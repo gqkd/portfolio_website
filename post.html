@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post — Giulio Quaglia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Prism.js syntax highlighting -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #E8EDF2; --ink: #0D1117; --ink-mid: #161B22; --ink-surface: #1C2333;
+    --ink-light: #8B949E; --ink-faint: #484F58; --terra: #00D4FF;
+    --terra-dim: rgba(0,212,255,0.10); --terra-glow: rgba(0,212,255,0.22);
+    --rule: #21262D; --rule-bright: #30363D;
+    --serif: 'Space Mono', monospace; --mono: 'JetBrains Mono', monospace;
+    --body: 'IBM Plex Sans', system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background:var(--ink); color:var(--cream); font-family:var(--body); font-size:16px; line-height:1.7; overflow-x:hidden; }
+  body::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:9000; background-image:linear-gradient(rgba(0,212,255,0.013) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.013) 1px,transparent 1px); background-size:44px 44px; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes blink  { 0%,100%{opacity:1} 50%{opacity:0} }
+  @keyframes spin   { to{transform:rotate(360deg)} }
+
+  /* NAV */
+  nav { position:fixed; top:0; left:0; right:0; z-index:200; display:flex; justify-content:space-between; align-items:center; padding:1rem 2.5rem; background:rgba(13,17,23,0.94); backdrop-filter:blur(14px); border-bottom:1px solid var(--rule); }
+  .nav-logo { font-family:var(--serif); font-weight:700; font-size:0.95rem; color:var(--cream); text-decoration:none; }
+  .nav-logo span { color:var(--terra); }
+  .nav-links { display:flex; gap:2rem; list-style:none; }
+  .nav-links a { font-family:var(--mono); font-size:0.64rem; letter-spacing:0.07em; color:var(--ink-light); text-decoration:none; transition:color 0.2s; }
+  .nav-links a::before { content:attr(data-num) '_'; color:var(--terra); opacity:0.6; margin-right:0.2em; }
+  .nav-links a:hover, .nav-links a.active { color:var(--terra); }
+  .nav-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; }
+  .nav-toggle span { display:block; width:22px; height:1px; background:var(--cream); }
+
+  /* POST LAYOUT */
+  .post-wrapper { max-width:740px; margin:0 auto; padding:7rem 2.5rem 5rem; animation:fadeUp 0.6s 0.1s both; }
+
+  /* LOADING */
+  .loading { display:flex; align-items:center; gap:0.8rem; font-family:var(--mono); font-size:0.7rem; color:var(--ink-faint); padding:4rem 0; }
+  .loading::before { content:''; width:14px; height:14px; border:1px solid var(--terra); border-top-color:transparent; border-radius:50%; animation:spin 0.8s linear infinite; flex-shrink:0; }
+
+  /* POST HEADER */
+  .post-back { display:inline-flex; align-items:center; gap:0.4rem; font-family:var(--mono); font-size:0.62rem; color:var(--ink-faint); text-decoration:none; margin-bottom:2.5rem; transition:color 0.2s; letter-spacing:0.06em; }
+  .post-back:hover { color:var(--terra); }
+  .post-back::before { content:'←'; color:var(--terra); }
+  .post-category-badge { display:inline-block; font-family:var(--mono); font-size:0.56rem; letter-spacing:0.12em; padding:0.14rem 0.5rem; border:1px solid rgba(0,212,255,0.3); color:var(--terra); margin-bottom:1.2rem; background:var(--terra-dim); }
+  .post-title-main { font-family:var(--serif); font-size:clamp(1.6rem,4vw,2.6rem); font-weight:700; line-height:1.15; color:var(--cream); margin-bottom:1.2rem; }
+  .post-meta-header { display:flex; align-items:center; gap:1.5rem; font-family:var(--mono); font-size:0.62rem; color:var(--ink-faint); padding-bottom:2rem; border-bottom:1px solid var(--rule); margin-bottom:3rem; flex-wrap:wrap; }
+  .post-meta-date { color:var(--ink-light); }
+
+  /* ── ARTICLE BODY ── */
+  .post-body { color:rgba(232,237,242,0.78); font-size:1rem; line-height:1.9; font-weight:300; }
+  .post-body p { margin-bottom:1.6rem; }
+  .post-body h2 { font-family:var(--serif); font-size:1.25rem; font-weight:700; color:var(--cream); margin:3rem 0 1rem; padding-bottom:0.5rem; border-bottom:1px solid var(--rule); }
+  .post-body h2::before { content:'## '; color:var(--terra); opacity:0.45; font-size:0.85em; }
+  .post-body h3 { font-family:var(--serif); font-size:1.05rem; font-weight:700; color:var(--cream); margin:2rem 0 0.8rem; }
+  .post-body h3::before { content:'### '; color:var(--terra); opacity:0.35; font-size:0.8em; }
+  .post-body strong { color:var(--cream); font-weight:600; }
+  .post-body em { font-style:italic; color:rgba(232,237,242,0.6); }
+  .post-body a { color:var(--terra); text-decoration:none; border-bottom:1px solid rgba(0,212,255,0.3); transition:border-color 0.2s; }
+  .post-body a:hover { border-color:var(--terra); }
+
+  /* Inline code */
+  .post-body code:not([class]) { font-family:var(--mono); font-size:0.82em; background:var(--ink-mid); border:1px solid var(--rule-bright); padding:0.12em 0.4em; color:var(--terra); border-radius:2px; }
+
+  /* Code blocks — override Prism tomorrow theme to match site palette */
+  .post-body pre[class*="language-"] {
+    background: var(--ink-mid) !important;
+    border: 1px solid var(--rule-bright);
+    border-left: 2px solid var(--terra);
+    border-radius: 0;
+    padding: 1.4rem 1.6rem;
+    margin: 1.8rem 0;
+    overflow-x: auto;
+    position: relative;
+  }
+  .post-body pre[class*="language-"]::before {
+    content: attr(data-lang);
+    position: absolute;
+    top: 0.5rem; right: 0.8rem;
+    font-family: var(--mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.1em;
+    color: var(--terra);
+    opacity: 0.5;
+    text-transform: uppercase;
+  }
+  .post-body pre[class*="language-"] code { font-size:0.83rem; line-height:1.65; background:none !important; border:none !important; padding:0 !important; color:var(--cream); }
+  /* Prism token overrides */
+  .token.comment, .token.prolog, .token.doctype, .token.cdata { color:#6e7681 !important; }
+  .token.keyword, .token.selector, .token.important { color:#ff7b72 !important; }
+  .token.string, .token.attr-value { color:#a5d6ff !important; }
+  .token.number, .token.boolean, .token.constant { color:#79c0ff !important; }
+  .token.function { color:#d2a8ff !important; }
+  .token.operator, .token.punctuation { color:#8b949e !important; }
+  .token.class-name, .token.builtin { color:#ffa657 !important; }
+
+  /* Lists */
+  .post-body ul, .post-body ol { padding-left:0; margin-bottom:1.6rem; list-style:none; display:flex; flex-direction:column; gap:0.5rem; }
+  .post-body ul li, .post-body ol li { padding-left:1.5rem; position:relative; }
+  .post-body ul li::before { content:'//'; position:absolute; left:0; color:var(--terra); font-family:var(--mono); font-size:0.6rem; opacity:0.5; top:0.12em; }
+  .post-body ol { counter-reset:ol-counter; }
+  .post-body ol li { counter-increment:ol-counter; }
+  .post-body ol li::before { content:counter(ol-counter,decimal-leading-zero); position:absolute; left:0; color:var(--terra); font-family:var(--mono); font-size:0.58rem; opacity:0.6; top:0.18em; }
+
+  /* Blockquote */
+  .post-body blockquote { border-left:2px solid var(--terra); padding:0.8rem 1.4rem; margin:1.8rem 0; background:var(--ink-mid); color:var(--ink-light); font-style:italic; }
+  .post-body blockquote p { margin-bottom:0; }
+
+  /* HR */
+  .post-body hr { border:none; border-top:1px solid var(--rule); margin:2.5rem 0; }
+
+  /* ── IMAGES & GIFs ── */
+  .post-body img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 2rem auto;
+    border: 1px solid var(--rule-bright);
+  }
+  .post-body figure { margin: 2rem 0; }
+  .post-body figure img { margin-bottom: 0.6rem; }
+  .post-body figcaption { font-family:var(--mono); font-size:0.62rem; color:var(--ink-faint); text-align:center; letter-spacing:0.05em; }
+
+  /* ── VIDEO (mp4) ── */
+  .post-body video {
+    display: block;
+    max-width: 100%;
+    margin: 2rem auto;
+    border: 1px solid var(--rule-bright);
+    background: #000;
+  }
+
+  /* ── YOUTUBE / VIMEO EMBED ── */
+  .video-embed {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    margin: 2rem 0;
+    border: 1px solid var(--rule-bright);
+  }
+  .video-embed iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+
+  /* POST FOOTER */
+  .post-footer { margin-top:4rem; padding-top:2rem; border-top:1px solid var(--rule); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+  .post-footer-back { display:inline-flex; align-items:center; gap:0.4rem; font-family:var(--mono); font-size:0.62rem; color:var(--ink-faint); text-decoration:none; transition:color 0.2s; }
+  .post-footer-back:hover { color:var(--terra); }
+  .post-footer-back::before { content:'←'; color:var(--terra); }
+  .post-share { font-family:var(--mono); font-size:0.58rem; color:var(--ink-faint); }
+
+  /* FOOTER */
+  footer { background:var(--ink-mid); color:var(--ink-faint); padding:1.6rem 2.5rem; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--rule); }
+  .footer-sig { font-family:var(--serif); font-size:0.88rem; font-weight:700; color:var(--ink-light); }
+  .footer-copy { font-family:var(--mono); font-size:0.58rem; letter-spacing:0.07em; }
+
+  /* MOBILE */
+  @media (max-width:768px) {
+    nav { padding:0.9rem 1.2rem; }
+    .nav-links { display:none; flex-direction:column; position:absolute; top:100%; left:0; right:0; background:rgba(13,17,23,0.98); border-bottom:1px solid var(--rule); padding:1rem 1.4rem 1.4rem; gap:1.1rem; z-index:199; }
+    .nav-links.open { display:flex; }
+    .nav-toggle { display:flex; }
+    .post-wrapper { padding:6rem 1.2rem 3.5rem; }
+    .post-title-main { font-size:1.5rem; }
+    .post-body pre[class*="language-"] { padding:1rem; }
+    footer { flex-direction:column; gap:0.7rem; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">G<span>.</span>Q</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#about"      data-num="01">about</a></li>
+    <li><a href="index.html#experience" data-num="02">experience</a></li>
+    <li><a href="index.html#projects"   data-num="03">projects</a></li>
+    <li><a href="index.html#skills"     data-num="04">skills</a></li>
+    <li><a href="blog.html"             data-num="05" class="active">blog</a></li>
+    <li><a href="index.html#contact"    data-num="06">contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main class="post-wrapper" id="postWrapper">
+  <div class="loading">loading post...</div>
+</main>
+
+<footer>
+  <div class="footer-sig">Giulio Quaglia</div>
+  <div class="footer-copy">© 2025 · Bologna, Italy · built by hand</div>
+</footer>
+
+<!-- Prism.js core + languages -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-r.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+
+<script>
+// ─────────────────────────────────────────────
+// FRONTMATTER PARSER
+// ─────────────────────────────────────────────
+function parseFrontmatter(text) {
+  const match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  if (!match) return { meta: {}, body: text };
+  const meta = {};
+  match[1].split('\n').forEach(line => {
+    const idx = line.indexOf(':');
+    if (idx === -1) return;
+    meta[line.slice(0,idx).trim()] = line.slice(idx+1).trim();
+  });
+  return { meta, body: match[2].trim() };
+}
+
+function estimateReadTime(text) {
+  return Math.max(1, Math.round(text.trim().split(/\s+/).length / 200));
+}
+
+function formatDateFull(dateStr) {
+  const d = new Date(dateStr);
+  if (isNaN(d)) return dateStr;
+  return d.toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+}
+
+// ─────────────────────────────────────────────
+// MARKDOWN RENDERER
+// Supports: h2 h3 p strong em code pre(lang) ul ol blockquote hr
+//           images GIFs  ![alt](src)
+//           figures      ![alt](src "caption")
+//           video mp4    @[video](src)
+//           youtube      @[youtube](VIDEO_ID)
+//           vimeo        @[vimeo](VIDEO_ID)
+//           links        [text](url)
+// ─────────────────────────────────────────────
+function renderMarkdown(md) {
+  const lines = md.split('\n');
+  let html = '';
+  let i = 0;
+  let inList = null;
+  let inPre  = false;
+  let preLang = '';
+  let preLines = [];
+
+  function flushList() {
+    if (!inList) return;
+    html += `</${inList}>`;
+    inList = null;
+  }
+
+  function flushPre() {
+    if (!inPre) return;
+    const escaped = preLines.join('\n');
+    const langClass = preLang ? ` class="language-${preLang}"` : '';
+    const langAttr  = preLang ? ` data-lang="${preLang}"` : '';
+    html += `<pre${langAttr}${langClass}><code${langClass}>${escaped}</code></pre>`;
+    preLines = []; preLang = ''; inPre = false;
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function inline(text) {
+    return text
+      // Inline code (before other replacements)
+      .replace(/`([^`]+)`/g, (_, c) => `<code>${escapeHtml(c)}</code>`)
+      // Bold + italic combined
+      .replace(/\*\*\*([^*]+)\*\*\*/g, '<strong><em>$1</em></strong>')
+      // Bold
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      // Italic
+      .replace(/\*([^*\n]+)\*/g, '<em>$1</em>')
+      // Links
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  }
+
+  function processMediaLine(line) {
+    // @[youtube](ID)
+    const yt = line.match(/^@\[youtube\]\(([^)]+)\)$/);
+    if (yt) return `<div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/${yt[1]}" allowfullscreen loading="lazy"></iframe></div>`;
+    // @[vimeo](ID)
+    const vi = line.match(/^@\[vimeo\]\(([^)]+)\)$/);
+    if (vi) return `<div class="video-embed"><iframe src="https://player.vimeo.com/video/${vi[1]}" allowfullscreen loading="lazy"></iframe></div>`;
+    // @[video](src)
+    const vid = line.match(/^@\[video\]\(([^)]+)\)$/);
+    if (vid) return `<video controls preload="metadata"><source src="${vid[1]}">Your browser does not support video.</video>`;
+    // Image with caption: ![alt](src "caption")
+    const imgCap = line.match(/^!\[([^\]]*)\]\(([^)"]+)\s+"([^"]+)"\)$/);
+    if (imgCap) return `<figure><img src="${imgCap[2]}" alt="${imgCap[1]}" loading="lazy"><figcaption>${imgCap[3]}</figcaption></figure>`;
+    // Plain image / GIF: ![alt](src)
+    const img = line.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+    if (img) return `<img src="${img[2]}" alt="${img[1]}" loading="lazy">`;
+    return null;
+  }
+
+  while (i < lines.length) {
+    const line = lines[i];
+
+    // ── Code fence ──
+    const fenceMatch = line.match(/^```(\w*)$/);
+    if (fenceMatch) {
+      if (inPre) { flushPre(); }
+      else { flushList(); inPre = true; preLang = fenceMatch[1].toLowerCase() || ''; }
+      i++; continue;
+    }
+    if (inPre) { preLines.push(escapeHtml(line)); i++; continue; }
+
+    // ── HR ──
+    if (/^---+$/.test(line.trim())) { flushList(); html += '<hr>'; i++; continue; }
+
+    // ── Headings ──
+    if (line.startsWith('## '))  { flushList(); html += `<h2>${inline(line.slice(3))}</h2>`; i++; continue; }
+    if (line.startsWith('### ')) { flushList(); html += `<h3>${inline(line.slice(4))}</h3>`; i++; continue; }
+
+    // ── Blockquote ──
+    if (line.startsWith('> ')) { flushList(); html += `<blockquote><p>${inline(line.slice(2))}</p></blockquote>`; i++; continue; }
+
+    // ── Media lines (standalone) ──
+    const media = processMediaLine(line.trim());
+    if (media) { flushList(); html += media; i++; continue; }
+
+    // ── Unordered list ──
+    if (/^[-*] /.test(line)) {
+      if (inList !== 'ul') { flushList(); html += '<ul>'; inList = 'ul'; }
+      html += `<li>${inline(line.slice(2))}</li>`; i++; continue;
+    }
+    // ── Ordered list ──
+    if (/^\d+\. /.test(line)) {
+      if (inList !== 'ol') { flushList(); html += '<ol>'; inList = 'ol'; }
+      html += `<li>${inline(line.replace(/^\d+\. /,''))}</li>`; i++; continue;
+    }
+
+    // ── Empty line ──
+    if (line.trim() === '') { flushList(); i++; continue; }
+
+    // ── Paragraph (merge consecutive non-special lines) ──
+    flushList();
+    let para = inline(line);
+    while (
+      i + 1 < lines.length &&
+      lines[i+1].trim() !== '' &&
+      !/^(#{1,3} |[-*] |\d+\. |> |```|@\[|!\[|---)/.test(lines[i+1])
+    ) {
+      i++;
+      para += ' ' + inline(lines[i]);
+    }
+    html += `<p>${para}</p>`;
+    i++;
+  }
+  flushList();
+  flushPre();
+  return html;
+}
+
+// ─────────────────────────────────────────────
+// LOAD + RENDER
+// ─────────────────────────────────────────────
+async function init() {
+  const wrapper = document.getElementById('postWrapper');
+  const slug    = new URLSearchParams(location.search).get('p');
+
+  if (!slug) {
+    wrapper.innerHTML = '<p style="font-family:var(--mono);color:var(--ink-faint);padding:4rem 0">// no post specified. <a href="blog.html" style="color:var(--terra)">← back to blog</a></p>';
+    return;
+  }
+
+  try {
+    const res = await fetch(`posts/${slug}.md`);
+    if (!res.ok) throw new Error(res.status);
+    const text = await res.text();
+    const { meta, body } = parseFrontmatter(text);
+    const readTime = estimateReadTime(body);
+    const cat = (meta.category || 'uncategorised').toLowerCase();
+
+    document.title = `${meta.title || slug} — Giulio Quaglia`;
+
+    wrapper.innerHTML = `
+      <a href="blog.html" class="post-back">back to blog</a>
+      <div class="post-category-badge">${cat}</div>
+      <h1 class="post-title-main">${meta.title || slug}</h1>
+      <div class="post-meta-header">
+        <span class="post-meta-date">${formatDateFull(meta.date)}</span>
+        <span>//</span>
+        <span>~${readTime} min read</span>
+      </div>
+      <article class="post-body" id="postBody">${renderMarkdown(body)}</article>
+      <div class="post-footer">
+        <a href="blog.html" class="post-footer-back">back to blog</a>
+        <span class="post-share">giulio quaglia · ${new Date(meta.date).getFullYear() || ''}</span>
+      </div>`;
+
+    // Run Prism on injected HTML
+    if (window.Prism) Prism.highlightAllUnder(document.getElementById('postBody'));
+
+  } catch(e) {
+    wrapper.innerHTML = `<p style="font-family:var(--mono);color:var(--ink-faint);padding:4rem 0">// post not found. <a href="blog.html" style="color:var(--terra)">← back to blog</a></p>`;
+  }
+}
+
+// Mobile nav
+document.getElementById('navToggle').addEventListener('click', () =>
+  document.getElementById('navLinks').classList.toggle('open'));
+
+init();
+</script>
+</body>
+</html>
