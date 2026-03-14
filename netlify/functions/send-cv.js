@@ -5,7 +5,7 @@
 // Required env vars (Netlify → Site settings → Environment variables):
 //   GMAIL_USER         — your Gmail address, e.g. giuq01692@gmail.com
 //   GMAIL_APP_PASSWORD — App Password from Google Account → Security → App passwords
-//   SITE_URL           — e.g. https://giulio-quaglia.com (no trailing slash)
+//   SITE_URL           — e.g. https://name-surname.com (no trailing slash)
 
 const nodemailer = require('nodemailer');
 
@@ -27,7 +27,7 @@ exports.handler = async (event) => {
     return { statusCode: 400, headers, body: JSON.stringify({ error: 'Invalid email address' }) };
   }
 
-  const { GMAIL_USER, GMAIL_APP_PASSWORD, SITE_URL = 'https://giulio-quaglia.com' } = process.env;
+  const { GMAIL_USER, GMAIL_APP_PASSWORD, SITE_URL} = process.env;
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -36,7 +36,7 @@ exports.handler = async (event) => {
 
   try {
     await transporter.sendMail({
-      from: `"Giulio Quaglia" <${GMAIL_USER}>`,
+      from: `"Giulio Quaglia - Cloud Engineer" <${GMAIL_USER}>`,
       to: email,
       bcc: GMAIL_USER,
       subject: 'Giulio Quaglia — CV',
