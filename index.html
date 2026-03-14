@@ -218,6 +218,23 @@
     .hero-meta { gap:0.8rem; }
     .hero-stat { min-width:90px; }
   }
+
+  /* CV MODAL */
+  .cv-overlay { position:fixed; inset:0; background:rgba(13,17,23,0.88); backdrop-filter:blur(6px); z-index:1000; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.25s; padding:1rem; }
+  .cv-overlay.open { opacity:1; pointer-events:all; }
+  .cv-modal { background:var(--ink-surface); border:1px solid var(--rule-bright); padding:2.4rem; max-width:420px; width:100%; position:relative; }
+  .cv-modal-close { position:absolute; top:1rem; right:1rem; background:none; border:none; color:var(--ink-light); font-size:1.1rem; cursor:pointer; font-family:var(--mono); padding:0.2rem 0.5rem; transition:color 0.2s; line-height:1; }
+  .cv-modal-close:hover { color:var(--cream); }
+  .cv-modal-label { font-family:var(--mono); font-size:0.58rem; letter-spacing:0.14em; color:var(--terra); margin-bottom:0.9rem; }
+  .cv-modal-title { font-family:var(--serif); font-size:1.35rem; font-weight:700; color:var(--cream); margin-bottom:0.5rem; }
+  .cv-modal-desc { font-size:0.85rem; color:var(--ink-light); margin-bottom:1.7rem; line-height:1.7; }
+  .cv-modal-form { display:flex; flex-direction:column; gap:0.7rem; }
+  .cv-modal-input { background:var(--ink-mid); border:1px solid var(--rule-bright); color:var(--cream); font-family:var(--mono); font-size:0.76rem; padding:0.72rem 1rem; outline:none; transition:border-color 0.2s; width:100%; }
+  .cv-modal-input:focus { border-color:var(--terra); }
+  .cv-modal-input::placeholder { color:var(--ink-faint); }
+  .cv-modal-status { font-family:var(--mono); font-size:0.7rem; margin-top:0.6rem; min-height:1.1em; }
+  .cv-modal-status.ok { color:var(--terra); }
+  .cv-modal-status.err { color:#f85149; }
 </style>
 </head>
 <body>
@@ -265,7 +282,7 @@
       <div class="hero-stat-label">years writing code</div>
     </div>
     <div class="hero-contact-block">
-      <a href="/cdn-cgi/l/email-protection#8bece2fefabbbabdb2b9cbece6eae2e7a5e8e4e6">✉ <span class="__cf_email__" data-cfemail="8ee9e7fbffbebfb8b7bccee9e3efe7e2a0ede1e3">[email&#160;protected]</span></a>
+      <a href="mailto:giuq01692@gmail.com">✉ giuq01692@gmail.com</a>
       <a href="https://www.linkedin.com/in/giulio-quaglia/" target="_blank" rel="noopener">⟶ linkedin.com/in/giulio-quaglia</a>
       <a href="https://github.com/gqkd" target="_blank" rel="noopener">⟶ github.com/gqkd</a>
     </div>
@@ -587,14 +604,14 @@
       <p class="contact-tagline">Good data projects start with <strong>good conversations.</strong></p>
       <p class="contact-note">Whether you're working on a data architecture problem, exploring a collaboration, or just want to talk pipelines, models, or triathlon race strategy. I'm always happy to hear from you.</p>
       <div class="contact-btns">
-        <a href="/cdn-cgi/l/email-protection#c0a7a9b5b1f0f1f6f9f280a7ada1a9aceea3afad" class="btn btn-terra">send a message →</a>
-        <a href="CV_Giulio_Quaglia_DataEng.pdf" download class="btn">download cv ↓</a>
+        <a href="mailto:giuq01692@gmail.com" class="btn btn-terra">send a message →</a>
+        <button class="btn" id="cvDownloadBtn">download cv ↓</button>
       </div>
     </div>
     <div class="contact-links">
-      <a href="/cdn-cgi/l/email-protection#4c2b25393d7c7d7a757e0c2b212d2520622f2321" class="contact-link-item">
+      <a href="mailto:giuq01692@gmail.com" class="contact-link-item">
         <span class="contact-link-platform">email</span>
-        <span class="contact-link-value"><span class="__cf_email__" data-cfemail="187f716d6928292e212a587f75797174367b7775">[email&#160;protected]</span></span>
+        <span class="contact-link-value">giuq01692@gmail.com</span>
         <span class="contact-link-arrow">→</span>
       </a>
       <a href="https://www.linkedin.com/in/giulio-quaglia/" target="_blank" rel="noopener" class="contact-link-item">
@@ -607,14 +624,23 @@
         <span class="contact-link-value">github.com/gqkd</span>
         <span class="contact-link-arrow">→</span>
       </a>
-      <a href="tel:+393404967604" class="contact-link-item">
-        <span class="contact-link-platform">phone</span>
-        <span class="contact-link-value">+39 340 496 7604</span>
-        <span class="contact-link-arrow">→</span>
-      </a>
     </div>
   </div>
 </section>
+
+<div class="cv-overlay" id="cvOverlay">
+  <div class="cv-modal">
+    <button class="cv-modal-close" id="cvClose" aria-label="Close">×</button>
+    <div class="cv-modal-label">// download cv</div>
+    <h2 class="cv-modal-title">Get my CV</h2>
+    <p class="cv-modal-desc">Enter your email and I'll send it straight to your inbox.</p>
+    <form class="cv-modal-form" id="cvForm">
+      <input type="email" class="cv-modal-input" id="cvEmail" placeholder="your@email.com" required autocomplete="email">
+      <button type="submit" class="btn btn-terra" id="cvSubmitBtn">send cv →</button>
+    </form>
+    <div class="cv-modal-status" id="cvStatus"></div>
+  </div>
+</div>
 
 <footer>
   <div class="footer-sig">Giulio Quaglia</div>
@@ -627,4 +653,70 @@
   toggle.addEventListener('click', () => links.classList.toggle('open'));
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
 
-  const section
+  // Nav active highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navItems = document.querySelectorAll('.nav-links a[href^="#"]');
+  new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navItems.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' }).observe && sections.forEach(s =>
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting)
+          navItems.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' }).observe(s)
+  );
+
+  // CV Modal
+  const cvOverlay   = document.getElementById('cvOverlay');
+  const cvClose     = document.getElementById('cvClose');
+  const cvForm      = document.getElementById('cvForm');
+  const cvEmail     = document.getElementById('cvEmail');
+  const cvSubmitBtn = document.getElementById('cvSubmitBtn');
+  const cvStatus    = document.getElementById('cvStatus');
+  const cvBtn       = document.getElementById('cvDownloadBtn');
+
+  function openModal()  { cvOverlay.classList.add('open'); cvEmail.focus(); }
+  function closeModal() { cvOverlay.classList.remove('open'); cvStatus.className = 'cv-modal-status'; cvStatus.textContent = ''; }
+
+  cvBtn.addEventListener('click', openModal);
+  cvClose.addEventListener('click', closeModal);
+  cvOverlay.addEventListener('click', e => { if (e.target === cvOverlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  cvForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    cvSubmitBtn.disabled = true;
+    cvSubmitBtn.textContent = 'sending...';
+    cvStatus.className = 'cv-modal-status';
+    cvStatus.textContent = '';
+    try {
+      const res  = await fetch('/.netlify/functions/send-cv', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: cvEmail.value }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        cvStatus.className = 'cv-modal-status ok';
+        cvStatus.textContent = '✓ check your inbox';
+        cvForm.reset();
+        setTimeout(closeModal, 2800);
+      } else {
+        throw new Error(data.error || 'Something went wrong');
+      }
+    } catch (err) {
+      cvStatus.className = 'cv-modal-status err';
+      cvStatus.textContent = '✕ ' + err.message;
+    } finally {
+      cvSubmitBtn.disabled = false;
+      cvSubmitBtn.textContent = 'send cv →';
+    }
+  });
+</script>
+</body>
+</html>
