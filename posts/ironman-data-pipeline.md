@@ -50,13 +50,3 @@ Build it correct first. Build it fast second. Build it scalable third, and only 
 I don't think there's anything mystical about the overlap. Both triathlon and engineering reward the same set of traits: patience, consistency, honest assessment of where you are, and the ability to keep moving when things are uncomfortable.
 
 The tools transfer. That's all.
-
-```mermaid
-graph TD
-  A[Fetch .md] --> B[Parse frontmatter]
-  B --> C[renderMarkdown]
-  C --> D{blocco mermaid?}
-  D -- sì --> E[div.mermaid]
-  D -- no  --> F[pre > code + Prism]
-  E --> G[mermaid.run → SVG]
-```
