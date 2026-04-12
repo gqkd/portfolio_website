@@ -3,7 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Post — Giulio Quaglia</title>
+<title>Post — thebiomedicalgeek.com</title>
+<meta name="description" content="An article from thebiomedicalgeek.com by Giulio Quaglia.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:title" content="Post — thebiomedicalgeek.com">
+<meta property="og:description" content="An article from thebiomedicalgeek.com by Giulio Quaglia.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thebiomedicalgeek.com/post.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Post — thebiomedicalgeek.com">
+<meta name="twitter:description" content="An article from thebiomedicalgeek.com by Giulio Quaglia.">
+<link rel="canonical" href="https://thebiomedicalgeek.com/post.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -11,6 +21,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :focus-visible { outline: 2px solid var(--terra); outline-offset: 3px; }
+  .skip-link { position:absolute; top:-100%; left:0; background:var(--terra); color:var(--ink); padding:0.5rem 1rem; font-family:var(--mono); font-size:0.75rem; font-weight:700; z-index:9999; text-decoration:none; }
+  .skip-link:focus { top:0; }
   :root {
     --cream: #E8EDF2; --ink: #0D1117; --ink-mid: #161B22; --ink-surface: #1C2333;
     --ink-light: #8B949E; --ink-faint: #484F58; --terra: #00D4FF;
@@ -34,7 +47,7 @@
   .nav-links a { font-family:var(--mono); font-size:0.64rem; letter-spacing:0.07em; color:var(--ink-light); text-decoration:none; transition:color 0.2s; }
   .nav-links a::before { content:attr(data-num) '_'; color:var(--terra); opacity:0.6; margin-right:0.2em; }
   .nav-links a:hover, .nav-links a.active { color:var(--terra); }
-  .nav-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; }
+  .nav-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; min-width:44px; min-height:44px; justify-content:center; align-items:center; }
   .nav-toggle span { display:block; width:22px; height:1px; background:var(--cream); }
 
   /* POST LAYOUT */
@@ -175,9 +188,13 @@
     .post-body pre[class*="language-"] { padding:1rem; }
     footer { flex-direction:column; gap:0.7rem; text-align:center; }
   }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
 </style>
 </head>
 <body>
+<a href="#postWrapper" class="skip-link">Vai al contenuto</a>
 
 <nav>
   <a href="index.html" class="nav-logo">G<span>.</span>Q</a>
@@ -189,7 +206,7 @@
     <li><a href="blog.html"             data-num="05" class="active">blog</a></li>
     <li><a href="index.html#contact"    data-num="06">contact</a></li>
   </ul>
-  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -200,7 +217,7 @@
 
 <footer>
   <div class="footer-sig">Giulio Quaglia</div>
-  <div class="footer-copy">© 2025 · Bologna, Italy · built by hand</div>
+  <div class="footer-copy">© <span id="yr"></span> · Bologna, Italy · built by hand</div>
 </footer>
 
 <!-- Prism.js core + languages -->
@@ -212,7 +229,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-r.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
-
 <script>
 // ─────────────────────────────────────────────
 // FRONTMATTER PARSER
@@ -266,10 +282,14 @@ function renderMarkdown(md) {
 
   function flushPre() {
     if (!inPre) return;
-    const escaped = preLines.join('\n');
-    const langClass = preLang ? ` class="language-${preLang}"` : '';
-    const langAttr  = preLang ? ` data-lang="${preLang}"` : '';
-    html += `<pre${langAttr}${langClass}><code${langClass}>${escaped}</code></pre>`;
+    if (preLang === 'mermaid') {
+      html += `<div class="mermaid">${preLines.join('\n')}</div>`;
+    } else {
+      const escaped = preLines.join('\n');
+      const langClass = preLang ? ` class="language-${preLang}"` : '';
+      const langAttr  = preLang ? ` data-lang="${preLang}"` : '';
+      html += `<pre${langAttr}${langClass}><code${langClass}>${escaped}</code></pre>`;
+    }
     preLines = []; preLang = ''; inPre = false;
   }
 
@@ -287,8 +307,11 @@ function renderMarkdown(md) {
       .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
       // Italic
       .replace(/\*([^*\n]+)\*/g, '<em>$1</em>')
-      // Links
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+      // Links — only allow safe URL schemes to prevent XSS
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, text, url) => {
+        const safe = /^(https?:\/\/|mailto:|\/|#)/.test(url.trim());
+        return safe ? `<a href="${url.trim()}" target="_blank" rel="noopener noreferrer">${text}</a>` : text;
+      });
   }
 
   function processMediaLine(line) {
@@ -389,7 +412,15 @@ async function init() {
     const readTime = estimateReadTime(body);
     const cat = (meta.category || 'uncategorised').toLowerCase();
 
-    document.title = `${meta.title || slug} — Giulio Quaglia`;
+    document.title = `${meta.title || slug} — thebiomedicalgeek.com`;
+    document.querySelector('meta[property="og:title"]').setAttribute('content', `${meta.title || slug} — thebiomedicalgeek.com`);
+    document.querySelector('meta[property="og:url"]').setAttribute('content', `https://thebiomedicalgeek.com/post.html?p=${slug}`);
+    if (meta.excerpt) {
+      document.querySelector('meta[name="description"]').setAttribute('content', meta.excerpt);
+      document.querySelector('meta[property="og:description"]').setAttribute('content', meta.excerpt);
+      document.querySelector('meta[name="twitter:description"]').setAttribute('content', meta.excerpt);
+      document.querySelector('meta[name="twitter:title"]').setAttribute('content', `${meta.title || slug} — thebiomedicalgeek.com`);
+    }
 
     wrapper.innerHTML = `
       <a href="blog.html" class="post-back">back to blog</a>
@@ -408,15 +439,36 @@ async function init() {
 
     // Run Prism on injected HTML
     if (window.Prism) Prism.highlightAllUnder(document.getElementById('postBody'));
+    // Run Mermaid only if this post contains diagrams
+    const mermaidNodes = document.querySelectorAll('#postBody .mermaid');
+    if (mermaidNodes.length) {
+      if (!window.__mermaid) {
+        const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
+        mermaid.initialize({ startOnLoad: false, theme: 'dark' });
+        window.__mermaid = mermaid;
+      }
+      await window.__mermaid.run({ nodes: mermaidNodes });
+    }
 
   } catch(e) {
     wrapper.innerHTML = `<p style="font-family:var(--mono);color:var(--ink-faint);padding:4rem 0">// post not found. <a href="blog.html" style="color:var(--terra)">← back to blog</a></p>`;
   }
 }
 
+// Footer year
+document.getElementById('yr').textContent = new Date().getFullYear();
+
 // Mobile nav
-document.getElementById('navToggle').addEventListener('click', () =>
-  document.getElementById('navLinks').classList.toggle('open'));
+const _navToggle = document.getElementById('navToggle');
+const _navLinks  = document.getElementById('navLinks');
+_navToggle.addEventListener('click', () => {
+  const open = _navLinks.classList.toggle('open');
+  _navToggle.setAttribute('aria-expanded', open);
+});
+_navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  _navLinks.classList.remove('open');
+  _navToggle.setAttribute('aria-expanded', 'false');
+}));
 
 init();
 </script>

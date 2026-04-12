@@ -4,11 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Giulio Quaglia — Cloud Data Engineer</title>
+<meta name="description" content="Cloud Data Engineer specialising in Azure, Databricks, and ML pipelines. Portfolio, projects, and blog at thebiomedicalgeek.com.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:title" content="Giulio Quaglia — Cloud Data Engineer">
+<meta property="og:description" content="Cloud Data Engineer specialising in Azure, Databricks, and ML pipelines. Portfolio, projects, and blog.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thebiomedicalgeek.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Giulio Quaglia — Cloud Data Engineer">
+<meta name="twitter:description" content="Cloud Data Engineer specialising in Azure, Databricks, and ML pipelines.">
+<link rel="canonical" href="https://thebiomedicalgeek.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :focus-visible { outline: 2px solid var(--terra); outline-offset: 3px; }
   :root {
     --cream: #E8EDF2;
     --ink: #0D1117;
@@ -43,7 +54,7 @@
   .nav-links a { font-family:var(--mono); font-size:0.64rem; letter-spacing:0.07em; color:var(--ink-light); text-decoration:none; transition:color 0.2s; }
   .nav-links a::before { content:attr(data-num) '_'; color:var(--terra); opacity:0.6; margin-right:0.2em; }
   .nav-links a:hover, .nav-links a.active { color:var(--terra); }
-  .nav-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; }
+  .nav-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; min-width:44px; min-height:44px; justify-content:center; align-items:center; }
   .nav-toggle span { display:block; width:22px; height:1px; background:var(--cream); transition:all 0.25s; }
 
   /* HERO */
@@ -235,9 +246,16 @@
   .cv-modal-status { font-family:var(--mono); font-size:0.7rem; margin-top:0.6rem; min-height:1.1em; }
   .cv-modal-status.ok { color:var(--terra); }
   .cv-modal-status.err { color:#f85149; }
+  .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
+  .skip-link { position:absolute; top:-100%; left:0; background:var(--terra); color:var(--ink); padding:0.5rem 1rem; font-family:var(--mono); font-size:0.75rem; font-weight:700; z-index:9999; text-decoration:none; }
+  .skip-link:focus { top:0; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Vai al contenuto</a>
 
 <nav>
   <a href="index.html" class="nav-logo">G<span>.</span>Q</a>
@@ -249,10 +267,12 @@
     <li><a href="blog.html"   data-num="05">blog</a></li>
     <li><a href="#contact"    data-num="06">contact</a></li>
   </ul>
-  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
+
+<main id="main-content">
 
 <!-- HERO -->
 <section id="hero">
@@ -568,13 +588,13 @@
   <div class="blog-preview-grid">
     <a href="blog.html" class="blog-card">
       <div class="blog-date">coming soon</div>
-      <div class="blog-category">data engineering</div>
+      <div class="blog-category">data eng</div>
       <h3 class="blog-title">5 things nobody tells you before migrating a SAP pipeline to Azure</h3>
       <p class="blog-excerpt">Time windows, NULL semantics in Spark SQL, and why your test always passes but production doesn't. An honest diary from someone who lived it.</p>
     </a>
     <a href="blog.html" class="blog-card">
       <div class="blog-date">coming soon</div>
-      <div class="blog-category">sport &amp; mindset</div>
+      <div class="blog-category">sport</div>
       <h3 class="blog-title">What an Ironman and a data pipeline have in common</h3>
       <p class="blog-excerpt">Pacing, iteration, and the art of not giving up at km 30. Reflections on discipline and engineering.</p>
     </a>
@@ -628,6 +648,8 @@
   </div>
 </section>
 
+</main>
+
 <div class="cv-overlay" id="cvOverlay">
   <div class="cv-modal">
     <button class="cv-modal-close" id="cvClose" aria-label="Close">×</button>
@@ -635,6 +657,7 @@
     <h2 class="cv-modal-title">Get my CV</h2>
     <p class="cv-modal-desc">Enter your email and I'll send it straight to your inbox.</p>
     <form class="cv-modal-form" id="cvForm">
+      <label for="cvEmail" class="sr-only">Your email address</label>
       <input type="email" class="cv-modal-input" id="cvEmail" placeholder="your@email.com" required autocomplete="email">
       <button type="submit" class="btn btn-terra" id="cvSubmitBtn">send cv →</button>
     </form>
@@ -644,25 +667,27 @@
 
 <footer>
   <div class="footer-sig">Giulio Quaglia</div>
-  <div class="footer-copy">© 2025 · Bologna, Italy · built by hand</div>
+  <div class="footer-copy">© <span id="yr"></span> · Bologna, Italy · built by hand</div>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
   const toggle = document.getElementById('navToggle');
   const links  = document.getElementById('navLinks');
-  toggle.addEventListener('click', () => links.classList.toggle('open'));
-  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
 
   // Nav active highlight on scroll
   const sections = document.querySelectorAll('section[id]');
   const navItems = document.querySelectorAll('.nav-links a[href^="#"]');
-  new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        navItems.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
-      }
-    });
-  }, { rootMargin: '-40% 0px -55% 0px' }).observe && sections.forEach(s =>
+  sections.forEach(s =>
     new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting)
@@ -680,8 +705,8 @@
   const cvStatus    = document.getElementById('cvStatus');
   const cvBtn       = document.getElementById('cvDownloadBtn');
 
-  function openModal()  { cvOverlay.classList.add('open'); cvEmail.focus(); }
-  function closeModal() { cvOverlay.classList.remove('open'); cvStatus.className = 'cv-modal-status'; cvStatus.textContent = ''; }
+  function openModal()  { cvOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; cvEmail.focus(); }
+  function closeModal() { cvOverlay.classList.remove('open'); document.body.style.overflow = ''; cvStatus.className = 'cv-modal-status'; cvStatus.textContent = ''; }
 
   cvBtn.addEventListener('click', openModal);
   cvClose.addEventListener('click', closeModal);

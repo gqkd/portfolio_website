@@ -3,12 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog — Giulio Quaglia</title>
+<title>Blog — thebiomedicalgeek.com</title>
+<meta name="description" content="Field notes on data engineering, machine learning, biomedical AI, finance, cryptography, and sport. By Giulio Quaglia.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:title" content="Blog — thebiomedicalgeek.com">
+<meta property="og:description" content="Field notes on data engineering, machine learning, biomedical AI, finance, cryptography, and sport.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thebiomedicalgeek.com/blog.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Blog — thebiomedicalgeek.com">
+<meta name="twitter:description" content="Field notes on data engineering, machine learning, biomedical AI, finance, cryptography, and sport.">
+<link rel="canonical" href="https://thebiomedicalgeek.com/blog.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :focus-visible { outline: 2px solid var(--terra); outline-offset: 3px; }
+  .skip-link { position:absolute; top:-100%; left:0; background:var(--terra); color:var(--ink); padding:0.5rem 1rem; font-family:var(--mono); font-size:0.75rem; font-weight:700; z-index:9999; text-decoration:none; }
+  .skip-link:focus { top:0; }
   :root {
     --cream: #E8EDF2; --ink: #0D1117; --ink-mid: #161B22; --ink-surface: #1C2333;
     --ink-light: #8B949E; --ink-faint: #484F58; --terra: #00D4FF;
@@ -32,7 +45,7 @@
   .nav-links a { font-family:var(--mono); font-size:0.64rem; letter-spacing:0.07em; color:var(--ink-light); text-decoration:none; transition:color 0.2s; }
   .nav-links a::before { content:attr(data-num) '_'; color:var(--terra); opacity:0.6; margin-right:0.2em; }
   .nav-links a:hover, .nav-links a.active { color:var(--terra); }
-  .nav-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; }
+  .nav-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; background:none; border:none; min-width:44px; min-height:44px; justify-content:center; align-items:center; }
   .nav-toggle span { display:block; width:22px; height:1px; background:var(--cream); }
 
   /* BLOG HEADER */
@@ -122,9 +135,13 @@
     .post-date-col { display:flex; gap:0.4rem; align-items:baseline; text-align:left; }
     .post-date-day { font-size:0.9rem; }
   }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Vai al contenuto</a>
 
 <nav>
   <a href="index.html" class="nav-logo">G<span>.</span>Q</a>
@@ -136,7 +153,7 @@
     <li><a href="blog.html"             data-num="05" class="active">blog</a></li>
     <li><a href="index.html#contact"    data-num="06">contact</a></li>
   </ul>
-  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -161,7 +178,7 @@
   <button class="filter-btn" data-cat="sport">sport</button>
 </div>
 
-<div class="blog-main">
+<main class="blog-main" id="main-content">
   <div>
     <div id="postsList"><div class="loading">loading posts...</div></div>
   </div>
@@ -199,11 +216,11 @@
       </div>
     </div>
   </aside>
-</div>
+</main>
 
 <footer>
   <div class="footer-sig">Giulio Quaglia</div>
-  <div class="footer-copy">© 2025 · Bologna, Italy · built by hand</div>
+  <div class="footer-copy">© <span id="yr"></span> · Bologna, Italy · built by hand</div>
 </footer>
 
 <script>
@@ -337,8 +354,18 @@ document.querySelectorAll('.filter-btn').forEach(b =>
 document.querySelectorAll('.topic-item').forEach(t =>
   t.addEventListener('click', () => filterPosts(t.dataset.cat)));
 
-document.getElementById('navToggle').addEventListener('click', () =>
-  document.getElementById('navLinks').classList.toggle('open'));
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+const _navToggle = document.getElementById('navToggle');
+const _navLinks  = document.getElementById('navLinks');
+_navToggle.addEventListener('click', () => {
+  const open = _navLinks.classList.toggle('open');
+  _navToggle.setAttribute('aria-expanded', open);
+});
+_navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  _navLinks.classList.remove('open');
+  _navToggle.setAttribute('aria-expanded', 'false');
+}));
 
 init();
 </script>

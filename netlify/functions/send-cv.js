@@ -11,7 +11,7 @@ const nodemailer = require('nodemailer');
 
 exports.handler = async (event) => {
   const headers = {
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': process.env.SITE_URL || 'https://thebiomedicalgeek.com',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Content-Type': 'application/json',
   };
