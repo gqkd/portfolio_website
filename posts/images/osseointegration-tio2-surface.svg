@@ -1,0 +1,107 @@
+<svg width="800" height="380" viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="380" fill="#0d1117"/>
+
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle"
+    font-family="'JetBrains Mono', 'Courier New', monospace"
+    font-size="13" fill="#e2d9c8" letter-spacing="0.5">
+    TiO&#x2082; surface layer &#x2014; protein adsorption cascade
+  </text>
+  <line x1="60" y1="38" x2="740" y2="38" stroke="#1e2433" stroke-width="1"/>
+
+  <!-- Biological environment zone -->
+  <rect x="60" y="46" width="680" height="166" fill="#0f1827" rx="4"/>
+  <text x="76" y="66"
+    font-family="'JetBrains Mono', monospace"
+    font-size="10" fill="#4a5568">biological environment</text>
+
+  <!-- Floating proteins (approaching surface) -->
+  <ellipse cx="130" cy="128" rx="19" ry="9" fill="#f59e0b" opacity="0.42"/>
+  <ellipse cx="285" cy="116" rx="22" ry="10" fill="#f59e0b" opacity="0.38"/>
+  <ellipse cx="445" cy="123" rx="18" ry="9" fill="#f59e0b" opacity="0.42"/>
+  <ellipse cx="605" cy="113" rx="21" ry="10" fill="#f59e0b" opacity="0.38"/>
+  <ellipse cx="695" cy="130" rx="16" ry="8" fill="#f59e0b" opacity="0.38"/>
+
+  <!-- Osteoblast (large cell approaching from above) -->
+  <circle cx="400" cy="82" r="22" fill="#1e1b4b" opacity="0.7" stroke="#6366f1" stroke-width="1.5"/>
+  <circle cx="400" cy="82" r="8" fill="#6366f1" opacity="0.75"/>
+  <line x1="400" y1="104" x2="400" y2="114" stroke="#6366f1" stroke-width="2" opacity="0.6"/>
+  <polygon points="400,117 397,112 403,112" fill="#6366f1" opacity="0.6"/>
+  <line x1="380" y1="90" x2="373" y2="100" stroke="#6366f1" stroke-width="1.5" opacity="0.35"/>
+  <line x1="420" y1="90" x2="428" y2="99" stroke="#6366f1" stroke-width="1.5" opacity="0.35"/>
+  <text x="430" y="78"
+    font-family="'JetBrains Mono', monospace"
+    font-size="10" fill="#818cf8">osteoblast</text>
+
+  <!-- Descent arrows for floating proteins -->
+  <line x1="130" y1="139" x2="130" y2="162" stroke="#f59e0b" stroke-width="1.5" opacity="0.45"/>
+  <polygon points="130,165 127,160 133,160" fill="#f59e0b" opacity="0.45"/>
+  <line x1="285" y1="128" x2="285" y2="162" stroke="#f59e0b" stroke-width="1.5" opacity="0.45"/>
+  <polygon points="285,165 282,160 288,160" fill="#f59e0b" opacity="0.45"/>
+  <line x1="445" y1="134" x2="445" y2="162" stroke="#f59e0b" stroke-width="1.5" opacity="0.45"/>
+  <polygon points="445,165 442,160 448,160" fill="#f59e0b" opacity="0.45"/>
+  <line x1="605" y1="125" x2="605" y2="162" stroke="#f59e0b" stroke-width="1.5" opacity="0.45"/>
+  <polygon points="605,165 602,160 608,160" fill="#f59e0b" opacity="0.45"/>
+
+  <!-- Adsorbed proteins sitting on TiO2 surface -->
+  <ellipse cx="95"  cy="207" rx="21" ry="10" fill="#f59e0b" opacity="0.90"/>
+  <ellipse cx="160" cy="205" rx="18" ry="9"  fill="#d97706" opacity="0.90"/>
+  <ellipse cx="230" cy="208" rx="23" ry="10" fill="#f59e0b" opacity="0.85"/>
+  <ellipse cx="310" cy="206" rx="20" ry="10" fill="#d97706" opacity="0.90"/>
+  <ellipse cx="390" cy="207" rx="22" ry="10" fill="#f59e0b" opacity="0.90"/>
+  <ellipse cx="470" cy="205" rx="19" ry="9"  fill="#d97706" opacity="0.85"/>
+  <ellipse cx="550" cy="208" rx="21" ry="10" fill="#f59e0b" opacity="0.90"/>
+  <ellipse cx="630" cy="206" rx="23" ry="9"  fill="#d97706" opacity="0.90"/>
+  <ellipse cx="706" cy="207" rx="18" ry="10" fill="#f59e0b" opacity="0.85"/>
+
+  <!-- TiO2 layer -->
+  <rect x="60" y="217" width="680" height="18" fill="#00D4FF" opacity="0.88" rx="2"/>
+  <text x="400" y="229" text-anchor="middle"
+    font-family="'JetBrains Mono', monospace"
+    font-size="10" fill="#0d1117" font-weight="bold">
+    TiO&#x2082; &#x2014; native oxide layer (3&#x2013;7 nm)
+  </text>
+
+  <!-- Dimension brace for TiO2 -->
+  <line x1="748" y1="217" x2="748" y2="235" stroke="#00D4FF" stroke-width="1.5" opacity="0.65"/>
+  <line x1="744" y1="217" x2="752" y2="217" stroke="#00D4FF" stroke-width="1.5" opacity="0.65"/>
+  <line x1="744" y1="235" x2="752" y2="235" stroke="#00D4FF" stroke-width="1.5" opacity="0.65"/>
+  <text x="757" y="229"
+    font-family="'JetBrains Mono', monospace"
+    font-size="9" fill="#00D4FF" opacity="0.75">~5 nm</text>
+
+  <!-- Titanium bulk -->
+  <rect x="60" y="237" width="680" height="90" fill="#2d2d3f" rx="4"/>
+  <line x1="60" y1="253" x2="740" y2="253" stroke="#3a3a50" stroke-width="0.8" opacity="0.55"/>
+  <line x1="60" y1="270" x2="740" y2="270" stroke="#3a3a50" stroke-width="0.8" opacity="0.55"/>
+  <line x1="60" y1="287" x2="740" y2="287" stroke="#3a3a50" stroke-width="0.8" opacity="0.55"/>
+  <line x1="60" y1="304" x2="740" y2="304" stroke="#3a3a50" stroke-width="0.8" opacity="0.55"/>
+  <text x="400" y="284" text-anchor="middle"
+    font-family="'JetBrains Mono', monospace"
+    font-size="13" fill="#6b6b80" letter-spacing="2">
+    Ti &#x2014; titanium (bulk metal)
+  </text>
+
+  <!-- Legend -->
+  <line x1="60" y1="340" x2="740" y2="340" stroke="#1e2433" stroke-width="1"/>
+  <ellipse cx="90" cy="360" rx="11" ry="6" fill="#f59e0b" opacity="0.85"/>
+  <text x="108" y="364"
+    font-family="'JetBrains Mono', monospace"
+    font-size="10" fill="#6b7280">plasma proteins (fibronectin, vitronectin)</text>
+
+  <circle cx="360" cy="360" r="8" fill="#1e1b4b" opacity="0.7" stroke="#6366f1" stroke-width="1.5"/>
+  <circle cx="360" cy="360" r="3" fill="#6366f1"/>
+  <text x="374" y="364"
+    font-family="'JetBrains Mono', monospace"
+    font-size="10" fill="#6b7280">osteoblast</text>
+
+  <rect x="510" y="355" width="14" height="8" fill="#00D4FF" opacity="0.85" rx="1"/>
+  <text x="530" y="364"
+    font-family="'JetBrains Mono', monospace"
+    font-size="10" fill="#6b7280">TiO&#x2082; oxide layer</text>
+  <rect x="660" y="355" width="14" height="8" fill="#2d2d3f" stroke="#4a4a5f" stroke-width="1" rx="1"/>
+  <text x="680" y="364"
+    font-family="'JetBrains Mono', monospace"
+    font-size="10" fill="#6b7280">Ti metal</text>
+</svg>

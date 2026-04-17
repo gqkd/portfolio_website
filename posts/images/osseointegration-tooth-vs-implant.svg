@@ -1,0 +1,232 @@
+<svg width="800" height="440" viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="440" fill="#0d1117"/>
+
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle"
+    font-family="'JetBrains Mono', 'Courier New', monospace"
+    font-size="13" fill="#e2d9c8" letter-spacing="0.5">
+    Natural tooth vs. osseointegrated implant
+  </text>
+  <line x1="60" y1="38" x2="740" y2="38" stroke="#1e2433" stroke-width="1"/>
+
+  <!-- Vertical divider -->
+  <line x1="400" y1="46" x2="400" y2="395" stroke="#1e2433" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- ========== LEFT PANEL: Natural tooth ========== -->
+  <text x="200" y="58"
+    text-anchor="middle"
+    font-family="'JetBrains Mono', monospace"
+    font-size="11" fill="#8892b0" letter-spacing="1">NATURAL TOOTH</text>
+
+  <!-- Gum tissue (soft tissue above bone) -->
+  <rect x="80" y="128" width="240" height="55" fill="#5a2030" rx="4" opacity="0.75"/>
+  <!-- Gum label -->
+  <text x="68" y="158"
+    font-family="'JetBrains Mono', monospace"
+    font-size="9" fill="#9a5060" text-anchor="end">gum</text>
+
+  <!-- Alveolar bone -->
+  <rect x="80" y="183" width="240" height="175" fill="#3a3020" rx="4"/>
+  <!-- Bone texture -->
+  <line x1="80"  y1="200" x2="320" y2="200" stroke="#4a4030" stroke-width="0.8" opacity="0.6"/>
+  <line x1="80"  y1="220" x2="320" y2="220" stroke="#4a4030" stroke-width="0.8" opacity="0.6"/>
+  <line x1="80"  y1="240" x2="320" y2="240" stroke="#4a4030" stroke-width="0.8" opacity="0.6"/>
+  <line x1="80"  y1="260" x2="320" y2="260" stroke="#4a4030" stroke-width="0.8" opacity="0.6"/>
+  <line x1="80"  y1="280" x2="320" y2="280" stroke="#4a4030" stroke-width="0.8" opacity="0.6"/>
+  <line x1="80"  y1="300" x2="320" y2="300" stroke="#4a4030" stroke-width="0.8" opacity="0.6"/>
+  <line x1="80"  y1="320" x2="320" y2="320" stroke="#4a4030" stroke-width="0.8" opacity="0.6"/>
+  <line x1="80"  y1="340" x2="320" y2="340" stroke="#4a4030" stroke-width="0.8" opacity="0.6"/>
+  <text x="200" y="372"
+    text-anchor="middle"
+    font-family="'JetBrains Mono', monospace"
+    font-size="10" fill="#6b5e40">alveolar bone</text>
+
+  <!-- Tooth crown (above gum) -->
+  <ellipse cx="200" cy="96" rx="44" ry="32" fill="#d4c8b0"/>
+  <!-- Crown shine -->
+  <ellipse cx="188" cy="88" rx="12" ry="7" fill="#e8e0d0" opacity="0.5"/>
+  <!-- Crown label -->
+  <text x="258" y="98"
+    font-family="'JetBrains Mono', monospace"
+    font-size="10" fill="#a09080">crown</text>
+  <line x1="247" y1="96" x2="240" y2="96" stroke="#706050" stroke-width="1" opacity="0.5"/>
+
+  <!-- Tooth root (inside bone, with PDL gap) -->
+  <!-- Socket (bone space for tooth) -->
+  <ellipse cx="200" cy="248" rx="30" ry="75" fill="#2d2620"/>
+  <!-- PDL zone: thin gap between tooth root and bone -->
+  <!-- Represented by fine diagonal fiber lines -->
+  <!-- Left side fibers -->
+  <line x1="173" y1="178" x2="180" y2="185" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="172" y1="192" x2="179" y2="199" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="172" y1="206" x2="179" y2="213" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="172" y1="220" x2="179" y2="227" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="172" y1="234" x2="179" y2="241" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="172" y1="248" x2="179" y2="255" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="172" y1="262" x2="179" y2="269" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="172" y1="276" x2="179" y2="283" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="173" y1="290" x2="179" y2="295" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="175" y1="302" x2="180" y2="307" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <!-- Right side fibers -->
+  <line x1="228" y1="178" x2="221" y2="185" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="229" y1="192" x2="222" y2="199" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="229" y1="206" x2="222" y2="213" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="229" y1="220" x2="222" y2="227" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="229" y1="234" x2="222" y2="241" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="229" y1="248" x2="222" y2="255" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="229" y1="262" x2="222" y2="269" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="229" y1="276" x2="222" y2="283" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="228" y1="290" x2="222" y2="295" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+  <line x1="226" y1="302" x2="221" y2="307" stroke="#f59e0b" stroke-width="1" opacity="0.5"/>
+
+  <!-- Tooth root shape (over the socket) -->
+  <ellipse cx="200" cy="248" rx="20" ry="68" fill="#c8bcaa"/>
+  <!-- Root texture -->
+  <line x1="196" y1="184" x2="196" y2="316" stroke="#b8ac9a" stroke-width="0.8" opacity="0.4"/>
+  <line x1="200" y1="182" x2="200" y2="318" stroke="#b8ac9a" stroke-width="0.8" opacity="0.3"/>
+  <line x1="204" y1="184" x2="204" y2="316" stroke="#b8ac9a" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- PDL label with bracket -->
+  <line x1="165" y1="235" x2="155" y2="235" stroke="#f59e0b" stroke-width="1" opacity="0.7"/>
+  <line x1="165" y1="265" x2="155" y2="265" stroke="#f59e0b" stroke-width="1" opacity="0.7"/>
+  <line x1="155" y1="235" x2="155" y2="265" stroke="#f59e0b" stroke-width="1" opacity="0.7"/>
+  <text x="150" y="252"
+    text-anchor="end"
+    font-family="'JetBrains Mono', monospace"
+    font-size="9" fill="#f59e0b">PDL</text>
+  <text x="150" y="263"
+    text-anchor="end"
+    font-family="'JetBrains Mono', monospace"
+    font-size="8" fill="#f59e0b" opacity="0.75">~0.25mm</text>
+
+  <!-- Root label -->
+  <text x="258" y="248"
+    font-family="'JetBrains Mono', monospace"
+    font-size="10" fill="#a09080">root</text>
+  <line x1="248" y1="246" x2="222" y2="246" stroke="#706050" stroke-width="1" opacity="0.5"/>
+
+  <!-- Force arrow (distributed via PDL) -->
+  <line x1="200" y1="65" x2="200" y2="75" stroke="#e2d9c8" stroke-width="2" opacity="0.5"/>
+  <polygon points="200,78 197,73 203,73" fill="#e2d9c8" opacity="0.5"/>
+  <!-- Multiple dispersed arrows at bone level -->
+  <line x1="155" y1="195" x2="155" y2="205" stroke="#f59e0b" stroke-width="1.5" opacity="0.4"/>
+  <polygon points="155,208 152,203 158,203" fill="#f59e0b" opacity="0.4"/>
+  <line x1="170" y1="192" x2="170" y2="202" stroke="#f59e0b" stroke-width="1.5" opacity="0.4"/>
+  <polygon points="170,205 167,200 173,200" fill="#f59e0b" opacity="0.4"/>
+  <line x1="230" y1="192" x2="230" y2="202" stroke="#f59e0b" stroke-width="1.5" opacity="0.4"/>
+  <polygon points="230,205 227,200 233,200" fill="#f59e0b" opacity="0.4"/>
+  <line x1="245" y1="195" x2="245" y2="205" stroke="#f59e0b" stroke-width="1.5" opacity="0.4"/>
+  <polygon points="245,208 242,203 248,203" fill="#f59e0b" opacity="0.4"/>
+
+  <!-- Note: distributed force -->
+  <text x="200" y="390"
+    text-anchor="middle"
+    font-family="'JetBrains Mono', monospace"
+    font-size="9" fill="#f59e0b" opacity="0.7">PDL distributes masticatory force</text>
+
+  <!-- ========== RIGHT PANEL: Titanium implant ========== -->
+  <text x="600" y="58"
+    text-anchor="middle"
+    font-family="'JetBrains Mono', monospace"
+    font-size="11" fill="#8892b0" letter-spacing="1">TITANIUM IMPLANT</text>
+
+  <!-- Bone (no soft tissue, implant at crest) -->
+  <rect x="480" y="128" width="240" height="230" fill="#3a3020" rx="4"/>
+  <!-- Bone texture -->
+  <line x1="480" y1="148" x2="720" y2="148" stroke="#4a4030" stroke-width="0.8" opacity="0.6"/>
+  <line x1="480" y1="168" x2="720" y2="168" stroke="#4a4030" stroke-width="0.8" opacity="0.6"/>
+  <line x1="480" y1="188" x2="720" y2="188" stroke="#4a4030" stroke-width="0.8" opacity="0.6"/>
+  <line x1="480" y1="208" x2="720" y2="208" stroke="#4a4030" stroke-width="0.8" opacity="0.6"/>
+  <line x1="480" y1="228" x2="720" y2="228" stroke="#4a4030" stroke-width="0.8" opacity="0.6"/>
+  <line x1="480" y1="248" x2="720" y2="248" stroke="#4a4030" stroke-width="0.8" opacity="0.6"/>
+  <line x1="480" y1="268" x2="720" y2="268" stroke="#4a4030" stroke-width="0.8" opacity="0.6"/>
+  <line x1="480" y1="288" x2="720" y2="288" stroke="#4a4030" stroke-width="0.8" opacity="0.6"/>
+  <line x1="480" y1="308" x2="720" y2="308" stroke="#4a4030" stroke-width="0.8" opacity="0.6"/>
+  <line x1="480" y1="328" x2="720" y2="328" stroke="#4a4030" stroke-width="0.8" opacity="0.6"/>
+  <text x="600" y="372"
+    text-anchor="middle"
+    font-family="'JetBrains Mono', monospace"
+    font-size="10" fill="#6b5e40">cortical bone</text>
+
+  <!-- Abutment + crown above bone -->
+  <!-- Abutment (connector piece) -->
+  <rect x="587" y="100" width="26" height="30" fill="#8a8a9f" rx="2"/>
+  <!-- Crown on implant -->
+  <ellipse cx="600" cy="90" rx="36" ry="24" fill="#d4c8b0"/>
+  <ellipse cx="590" cy="83" rx="10" ry="6" fill="#e8e0d0" opacity="0.5"/>
+  <text x="650" y="94"
+    font-family="'JetBrains Mono', monospace"
+    font-size="10" fill="#a09080">crown</text>
+  <line x1="639" y1="92" x2="636" y2="92" stroke="#706050" stroke-width="1" opacity="0.5"/>
+
+  <!-- Implant body (threaded cylinder inside bone) -->
+  <!-- Main body -->
+  <rect x="583" y="130" width="34" height="200" fill="#1a3a5a" rx="3"/>
+  <!-- Thread marks (horizontal lines with slight indent effect) -->
+  <line x1="583" y1="142" x2="617" y2="142" stroke="#00D4FF" stroke-width="1.5" opacity="0.45"/>
+  <line x1="583" y1="152" x2="617" y2="152" stroke="#00D4FF" stroke-width="1.5" opacity="0.45"/>
+  <line x1="583" y1="162" x2="617" y2="162" stroke="#00D4FF" stroke-width="1.5" opacity="0.45"/>
+  <line x1="583" y1="172" x2="617" y2="172" stroke="#00D4FF" stroke-width="1.5" opacity="0.45"/>
+  <line x1="583" y1="182" x2="617" y2="182" stroke="#00D4FF" stroke-width="1.5" opacity="0.45"/>
+  <line x1="583" y1="192" x2="617" y2="192" stroke="#00D4FF" stroke-width="1.5" opacity="0.45"/>
+  <line x1="583" y1="202" x2="617" y2="202" stroke="#00D4FF" stroke-width="1.5" opacity="0.45"/>
+  <line x1="583" y1="212" x2="617" y2="212" stroke="#00D4FF" stroke-width="1.5" opacity="0.45"/>
+  <line x1="583" y1="222" x2="617" y2="222" stroke="#00D4FF" stroke-width="1.5" opacity="0.45"/>
+  <line x1="583" y1="232" x2="617" y2="232" stroke="#00D4FF" stroke-width="1.5" opacity="0.45"/>
+  <line x1="583" y1="242" x2="617" y2="242" stroke="#00D4FF" stroke-width="1.5" opacity="0.45"/>
+  <line x1="583" y1="252" x2="617" y2="252" stroke="#00D4FF" stroke-width="1.5" opacity="0.45"/>
+  <line x1="583" y1="262" x2="617" y2="262" stroke="#00D4FF" stroke-width="1.5" opacity="0.45"/>
+  <line x1="583" y1="272" x2="617" y2="272" stroke="#00D4FF" stroke-width="1.5" opacity="0.45"/>
+  <line x1="583" y1="282" x2="617" y2="282" stroke="#00D4FF" stroke-width="1.5" opacity="0.45"/>
+  <line x1="583" y1="292" x2="617" y2="292" stroke="#00D4FF" stroke-width="1.5" opacity="0.45"/>
+  <line x1="583" y1="302" x2="617" y2="302" stroke="#00D4FF" stroke-width="1.5" opacity="0.45"/>
+  <line x1="583" y1="312" x2="617" y2="312" stroke="#00D4FF" stroke-width="1.5" opacity="0.45"/>
+  <!-- Implant tip (rounded bottom) -->
+  <ellipse cx="600" cy="330" rx="17" ry="8" fill="#1a3a5a"/>
+
+  <!-- Implant label -->
+  <text x="634" y="220"
+    font-family="'JetBrains Mono', monospace"
+    font-size="10" fill="#00D4FF" opacity="0.85">implant</text>
+  <line x1="634" y1="218" x2="619" y2="218" stroke="#00D4FF" stroke-width="1" opacity="0.5"/>
+
+  <!-- Direct contact label (no PDL gap) -->
+  <line x1="560" y1="220" x2="545" y2="220" stroke="#e2d9c8" stroke-width="1" opacity="0.6"/>
+  <line x1="560" y1="260" x2="545" y2="260" stroke="#e2d9c8" stroke-width="1" opacity="0.6"/>
+  <line x1="545" y1="220" x2="545" y2="260" stroke="#e2d9c8" stroke-width="1" opacity="0.6"/>
+  <text x="540" y="237"
+    text-anchor="end"
+    font-family="'JetBrains Mono', monospace"
+    font-size="9" fill="#e2d9c8" opacity="0.75">direct</text>
+  <text x="540" y="248"
+    text-anchor="end"
+    font-family="'JetBrains Mono', monospace"
+    font-size="9" fill="#e2d9c8" opacity="0.75">contact</text>
+  <text x="540" y="259"
+    text-anchor="end"
+    font-family="'JetBrains Mono', monospace"
+    font-size="9" fill="#00D4FF" opacity="0.8">(no PDL)</text>
+
+  <!-- Force arrow (single, direct) -->
+  <line x1="600" y1="65" x2="600" y2="75" stroke="#e2d9c8" stroke-width="2" opacity="0.5"/>
+  <polygon points="600,78 597,73 603,73" fill="#e2d9c8" opacity="0.5"/>
+  <!-- Single concentrated arrow into bone -->
+  <line x1="600" y1="140" x2="600" y2="150" stroke="#e2d9c8" stroke-width="2" opacity="0.4"/>
+  <polygon points="600,153 597,148 603,148" fill="#e2d9c8" opacity="0.4"/>
+
+  <!-- Note: concentrated force -->
+  <text x="600" y="390"
+    text-anchor="middle"
+    font-family="'JetBrains Mono', monospace"
+    font-size="9" fill="#e2d9c8" opacity="0.55">load transfers directly to bone</text>
+
+  <!-- Bottom caption -->
+  <line x1="60" y1="400" x2="740" y2="400" stroke="#1e2433" stroke-width="1"/>
+  <text x="400" y="418"
+    text-anchor="middle"
+    font-family="'JetBrains Mono', monospace"
+    font-size="10" fill="#4a5568">
+    The periodontal ligament (PDL) acts as a biological shock absorber. Osseointegrated implants lack it entirely.
+  </text>
+</svg>

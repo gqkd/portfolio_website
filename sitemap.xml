@@ -16,4 +16,24 @@
     <loc>https://thebiomedicalgeek.com/post.html?p=ironman-data-pipeline</loc>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://thebiomedicalgeek.com/post.html?p=neural-network-calibration</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thebiomedicalgeek.com/post.html?p=hip-biomechanics</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thebiomedicalgeek.com/post.html?p=crash-biomechanics</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thebiomedicalgeek.com/post.html?p=osseointegration</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thebiomedicalgeek.com/post.html?p=sleep-stages</loc>
+    <priority>0.6</priority>
+  </url>
 </urlset>
