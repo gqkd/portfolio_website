@@ -1,6 +1,6 @@
 ---
 title: What happens to your body in a 50 km/h crash
-date: 2026-01-26
+date: 2024-02-03
 category: biomed eng
 tags: [biomechanics, crash, injury-biomechanics, safety, automotive]
 excerpt: A frontal impact at 50 km/h lasts under 200 milliseconds. The biomechanics of those milliseconds explains why urban speed limits are exactly where they are.

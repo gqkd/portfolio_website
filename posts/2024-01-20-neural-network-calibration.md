@@ -1,6 +1,6 @@
 ---
 title: When the neural network doesn't know what it doesn't know
-date: 2026-01-12
+date: 2024-01-20
 category: machine learning eng
 tags: [machine-learning, calibration, uncertainty, deep-learning, healthcare-ai]
 excerpt: Deep learning models are systematically overconfident. They output 99% confidence and are often wrong. This is what calibration means, why it matters, and what you can do about it.

@@ -1,6 +1,6 @@
 ---
 title: Hip biomechanics: how much does standing on one leg actually cost?
-date: 2026-01-19
+date: 2024-01-27
 category: biomed eng
 tags: [biomechanics, hip, prosthetics, musculoskeletal, biomedical-engineering]
 excerpt: When you lift one foot while walking, the force on your hip joint reaches 3x your body weight. Here is the lever mechanics behind that number and why it determines how prosthetics are engineered.

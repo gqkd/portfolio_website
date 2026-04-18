@@ -9,31 +9,23 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://thebiomedicalgeek.com/post.html?p=2025-06-01-sap-azure-migration</loc>
+    <loc>https://thebiomedicalgeek.com/post.html?p=2024-02-03-crash-biomechanics</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://thebiomedicalgeek.com/post.html?p=2025-05-10-ironman-data-pipeline</loc>
+    <loc>https://thebiomedicalgeek.com/post.html?p=2024-01-27-hip-biomechanics</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://thebiomedicalgeek.com/post.html?p=2026-01-12-neural-network-calibration</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://thebiomedicalgeek.com/post.html?p=2026-01-19-hip-biomechanics</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://thebiomedicalgeek.com/post.html?p=2026-01-26-crash-biomechanics</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://thebiomedicalgeek.com/post.html?p=2024-01-06-osseointegration</loc>
+    <loc>https://thebiomedicalgeek.com/post.html?p=2024-01-20-neural-network-calibration</loc>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://thebiomedicalgeek.com/post.html?p=2024-01-13-sleep-stages</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://thebiomedicalgeek.com/post.html?p=2024-01-06-osseointegration</loc>
     <priority>0.6</priority>
   </url>
 </urlset>
