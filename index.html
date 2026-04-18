@@ -659,6 +659,9 @@
     <form class="cv-modal-form" id="cvForm">
       <label for="cvEmail" class="sr-only">Your email address</label>
       <input type="email" class="cv-modal-input" id="cvEmail" placeholder="your@email.com" required autocomplete="email">
+      <!-- honeypot: bots fill this, humans don't see it -->
+      <input type="text" name="website" id="cvHoneypot" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+      <input type="hidden" id="cvFormTime">
       <button type="submit" class="btn btn-terra" id="cvSubmitBtn">send cv →</button>
     </form>
     <div class="cv-modal-status" id="cvStatus"></div>
@@ -705,7 +708,7 @@
   const cvStatus    = document.getElementById('cvStatus');
   const cvBtn       = document.getElementById('cvDownloadBtn');
 
-  function openModal()  { cvOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; cvEmail.focus(); }
+  function openModal()  { cvOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; document.getElementById('cvFormTime').value = Date.now(); cvEmail.focus(); }
   function closeModal() { cvOverlay.classList.remove('open'); document.body.style.overflow = ''; cvStatus.className = 'cv-modal-status'; cvStatus.textContent = ''; }
 
   cvBtn.addEventListener('click', openModal);
@@ -723,7 +726,7 @@
       const res  = await fetch('/.netlify/functions/send-cv', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: cvEmail.value }),
+        body: JSON.stringify({ email: cvEmail.value, website: document.getElementById('cvHoneypot').value, formTime: document.getElementById('cvFormTime').value }),
       });
       const data = await res.json();
       if (res.ok) {

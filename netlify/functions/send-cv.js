@@ -19,9 +19,17 @@ exports.handler = async (event) => {
   if (event.httpMethod === 'OPTIONS') return { statusCode: 200, headers, body: '' };
   if (event.httpMethod !== 'POST')   return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
 
-  let email;
-  try { ({ email } = JSON.parse(event.body)); }
+  let email, website, formTime;
+  try { ({ email, website, formTime } = JSON.parse(event.body)); }
   catch { return { statusCode: 400, headers, body: JSON.stringify({ error: 'Invalid body' }) }; }
+
+  // Honeypot: bots fill the hidden "website" field, humans never see it
+  if (website) return { statusCode: 200, headers, body: JSON.stringify({ success: true }) };
+
+  // Timing check: reject submissions faster than 3 seconds (bots are fast)
+  if (!formTime || Date.now() - Number(formTime) < 3000) {
+    return { statusCode: 200, headers, body: JSON.stringify({ success: true }) };
+  }
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: 'Invalid email address' }) };

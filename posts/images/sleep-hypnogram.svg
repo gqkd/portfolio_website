@@ -1,0 +1,149 @@
+<svg width="800" height="390" viewBox="0 0 800 390" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- REM shading gradient -->
+    <linearGradient id="remGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0.04"/>
+    </linearGradient>
+    <!-- N3 shading gradient -->
+    <linearGradient id="swsGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.18"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="390" fill="#0d1117"/>
+
+  <!-- Title -->
+  <text x="400" y="26" text-anchor="middle"
+    font-family="'JetBrains Mono', 'Courier New', monospace"
+    font-size="13" fill="#e2d9c8" letter-spacing="0.5">
+    Hypnogram &#x2014; typical night, healthy adult (5 cycles &#xD7; ~90 min)
+  </text>
+  <line x1="80" y1="34" x2="770" y2="34" stroke="#1e2433" stroke-width="1"/>
+
+  <!-- ===== Y-AXIS LABELS ===== -->
+  <!-- Stage lines (horizontal guides) -->
+  <line x1="80" y1="75"  x2="770" y2="75"  stroke="#1e2433" stroke-width="0.7" stroke-dasharray="3,4"/>
+  <line x1="80" y1="140" x2="770" y2="140" stroke="#1e2433" stroke-width="0.7" stroke-dasharray="3,4"/>
+  <line x1="80" y1="205" x2="770" y2="205" stroke="#1e2433" stroke-width="0.7" stroke-dasharray="3,4"/>
+  <line x1="80" y1="270" x2="770" y2="270" stroke="#1e2433" stroke-width="0.7" stroke-dasharray="3,4"/>
+  <line x1="80" y1="335" x2="770" y2="335" stroke="#1e2433" stroke-width="0.7" stroke-dasharray="3,4"/>
+
+  <!-- Y-axis labels -->
+  <text x="72" y="79"  text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="10" fill="#6b7280">Wake</text>
+  <text x="72" y="144" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="10" fill="#818cf8">REM</text>
+  <text x="72" y="209" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94a3b8">N1</text>
+  <text x="72" y="274" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94a3b8">N2</text>
+  <text x="72" y="339" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="10" fill="#f59e0b">N3 SWS</text>
+
+  <!-- Y-axis line -->
+  <line x1="80" y1="50" x2="80" y2="355" stroke="#2d3748" stroke-width="1.5"/>
+
+  <!-- ===== X-AXIS (time 0-8 hours, 85px per hour) ===== -->
+  <!-- X = 80 + hours * 85 -->
+  <line x1="80" y1="355" x2="770" y2="355" stroke="#2d3748" stroke-width="1.5"/>
+
+  <!-- Hour ticks and labels -->
+  <line x1="80"  y1="355" x2="80"  y2="361" stroke="#4b5563" stroke-width="1.5"/>
+  <line x1="165" y1="355" x2="165" y2="361" stroke="#4b5563" stroke-width="1.5"/>
+  <line x1="250" y1="355" x2="250" y2="361" stroke="#4b5563" stroke-width="1.5"/>
+  <line x1="335" y1="355" x2="335" y2="361" stroke="#4b5563" stroke-width="1.5"/>
+  <line x1="420" y1="355" x2="420" y2="361" stroke="#4b5563" stroke-width="1.5"/>
+  <line x1="505" y1="355" x2="505" y2="361" stroke="#4b5563" stroke-width="1.5"/>
+  <line x1="590" y1="355" x2="590" y2="361" stroke="#4b5563" stroke-width="1.5"/>
+  <line x1="675" y1="355" x2="675" y2="361" stroke="#4b5563" stroke-width="1.5"/>
+  <line x1="760" y1="355" x2="760" y2="361" stroke="#4b5563" stroke-width="1.5"/>
+
+  <text x="80"  y="373" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">0</text>
+  <text x="165" y="373" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">1h</text>
+  <text x="250" y="373" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">2h</text>
+  <text x="335" y="373" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">3h</text>
+  <text x="420" y="373" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">4h</text>
+  <text x="505" y="373" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">5h</text>
+  <text x="590" y="373" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">6h</text>
+  <text x="675" y="373" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">7h</text>
+  <text x="760" y="373" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">8h</text>
+
+  <!-- ===== SHADED REGIONS ===== -->
+
+  <!-- N3 (SWS) regions — warm amber, at bottom -->
+  <!-- N3 Cycle 1: ~0.8h to 1.5h → x=148 to x=208 -->
+  <rect x="148" y="50" width="60" height="305" fill="url(#swsGrad)"/>
+  <!-- N3 Cycle 2: ~2.15h to 2.8h → x=263 to x=318 -->
+  <rect x="263" y="50" width="55" height="305" fill="url(#swsGrad)"/>
+  <!-- N3 Cycle 3 (brief): ~3.55h to 3.75h → x=382 to x=399 -->
+  <rect x="382" y="50" width="17" height="305" fill="url(#swsGrad)"/>
+
+  <!-- REM regions — purple -->
+  <!-- REM 1 (short): ~1.75h to 2.0h → x=229 to x=250 -->
+  <rect x="229" y="50" width="21" height="305" fill="url(#remGrad)"/>
+  <!-- REM 2: ~3.0h to 3.4h → x=335 to x=369 -->
+  <rect x="335" y="50" width="34" height="305" fill="url(#remGrad)"/>
+  <!-- REM 3: ~4.0h to 4.6h → x=420 to x=471 -->
+  <rect x="420" y="50" width="51" height="305" fill="url(#remGrad)"/>
+  <!-- REM 4: ~5.7h to 6.4h → x=565 to x=624 -->
+  <rect x="565" y="50" width="59" height="305" fill="url(#remGrad)"/>
+  <!-- REM 5: ~7.0h to 8.0h → x=675 to x=760 -->
+  <rect x="675" y="50" width="85" height="305" fill="url(#remGrad)"/>
+
+  <!-- ===== HYPNOGRAM LINE ===== -->
+  <!-- Step function: horizontal then vertical -->
+  <!-- Y values: Wake=75, REM=140, N1=205, N2=270, N3=335 -->
+  <!-- X = 80 + hours * 85 -->
+  <polyline
+    points="
+      80,75
+      93,75   93,205
+      106,205 106,270
+      148,270 148,335
+      208,335 208,270
+      229,270 229,140
+      250,140 250,270
+      263,270 263,335
+      318,335 318,270
+      335,270 335,140
+      369,140 369,270
+      382,270 382,335
+      399,335 399,270
+      420,270 420,140
+      471,140 471,270
+      480,270 480,205
+      505,205 505,270
+      565,270 565,140
+      624,140 624,270
+      633,270 633,205
+      650,205 650,270
+      675,270 675,140
+      760,140 760,75
+    "
+    fill="none"
+    stroke="#00D4FF"
+    stroke-width="2"
+    stroke-linejoin="miter"/>
+
+  <!-- ===== REM LABELS (top) ===== -->
+  <text x="239" y="58" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="#818cf8" opacity="0.8">R1</text>
+  <text x="352" y="58" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="#818cf8" opacity="0.8">R2</text>
+  <text x="445" y="58" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="#818cf8" opacity="0.8">R3</text>
+  <text x="594" y="58" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="#818cf8" opacity="0.8">R4</text>
+  <text x="717" y="58" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="#818cf8" opacity="0.8">R5</text>
+
+  <!-- Annotation: N3 heavy early -->
+  <text x="178" y="352" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="#f59e0b" opacity="0.8">SWS</text>
+  <text x="290" y="352" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="#f59e0b" opacity="0.8">SWS</text>
+
+  <!-- Legend -->
+  <rect x="80" y="360" width="1" height="1" fill="none"/><!-- spacer -->
+  <line x1="82" y1="385" x2="102" y2="385" stroke="#00D4FF" stroke-width="2"/>
+  <text x="108" y="388" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">hypnogram trace</text>
+
+  <rect x="210" y="380" width="16" height="8" fill="url(#remGrad)" stroke="#6366f1" stroke-width="0.5" stroke-opacity="0.5"/>
+  <text x="232" y="388" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">REM period</text>
+
+  <rect x="330" y="380" width="16" height="8" fill="url(#swsGrad)" stroke="#f59e0b" stroke-width="0.5" stroke-opacity="0.5"/>
+  <text x="352" y="388" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">N3 slow-wave sleep (SWS)</text>
+
+  <text x="600" y="388" font-family="'JetBrains Mono', monospace" font-size="8" fill="#4a5568">Data: Dijk &amp; Czeisler (1995)</text>
+</svg>

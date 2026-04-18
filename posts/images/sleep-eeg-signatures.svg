@@ -1,0 +1,133 @@
+<svg width="800" height="422" viewBox="0 0 800 422" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="422" fill="#0d1117"/>
+
+  <!-- Title -->
+  <text x="400" y="24" text-anchor="middle"
+    font-family="'JetBrains Mono', 'Courier New', monospace"
+    font-size="13" fill="#e2d9c8" letter-spacing="0.5">
+    EEG stage signatures &#x2014; 4-second schematic window
+  </text>
+  <line x1="0" y1="34" x2="800" y2="34" stroke="#1e2433" stroke-width="1"/>
+
+  <!-- ===== ROW SEPARATORS ===== -->
+  <line x1="0" y1="112" x2="800" y2="112" stroke="#1e2433" stroke-width="1"/>
+  <line x1="0" y1="190" x2="800" y2="190" stroke="#1e2433" stroke-width="1"/>
+  <line x1="0" y1="276" x2="800" y2="276" stroke="#1e2433" stroke-width="1"/>
+  <line x1="0" y1="350" x2="800" y2="350" stroke="#1e2433" stroke-width="1"/>
+
+  <!-- ===== ROW BACKGROUNDS (alternating) ===== -->
+  <rect x="0" y="34"  width="800" height="78" fill="#0d1117"/>
+  <rect x="0" y="112" width="800" height="78" fill="#0f1420"/>
+  <rect x="0" y="190" width="800" height="86" fill="#0d1117"/>
+  <rect x="0" y="276" width="800" height="74" fill="#0f1420"/>
+  <rect x="0" y="350" width="800" height="72" fill="#0d1117"/>
+
+  <!-- ===== STAGE LABELS (left column) ===== -->
+  <!-- Wake -->
+  <text x="10" y="69" font-family="'JetBrains Mono', monospace" font-size="11" fill="#e2d9c8" font-weight="bold">Wake</text>
+  <text x="10" y="83" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">Alpha (8-12 Hz)</text>
+  <text x="10" y="95" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">regular, relaxed</text>
+
+  <!-- N1 -->
+  <text x="10" y="147" font-family="'JetBrains Mono', monospace" font-size="11" fill="#94a3b8" font-weight="bold">N1</text>
+  <text x="10" y="161" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">Theta (4-7 Hz)</text>
+  <text x="10" y="173" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">lower amplitude</text>
+
+  <!-- N2 -->
+  <text x="10" y="226" font-family="'JetBrains Mono', monospace" font-size="11" fill="#94a3b8" font-weight="bold">N2</text>
+  <text x="10" y="240" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">Theta baseline +</text>
+  <text x="10" y="252" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">spindle + K-complex</text>
+  <text x="10" y="264" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">50% of night</text>
+
+  <!-- N3 -->
+  <text x="10" y="303" font-family="'JetBrains Mono', monospace" font-size="11" fill="#f59e0b" font-weight="bold">N3 SWS</text>
+  <text x="10" y="317" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">Delta (0.5-4 Hz)</text>
+  <text x="10" y="329" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">high amplitude, slow</text>
+
+  <!-- REM -->
+  <text x="10" y="378" font-family="'JetBrains Mono', monospace" font-size="11" fill="#818cf8" font-weight="bold">REM</text>
+  <text x="10" y="392" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">Mixed, low amplitude</text>
+  <text x="10" y="404" font-family="'JetBrains Mono', monospace" font-size="9" fill="#6b7280">desynchronized</text>
+
+  <!-- ===== BASELINE LINES ===== -->
+  <line x1="100" y1="73"  x2="620" y2="73"  stroke="#1e2433" stroke-width="0.8"/>
+  <line x1="100" y1="151" x2="620" y2="151" stroke="#1e2433" stroke-width="0.8"/>
+  <line x1="100" y1="233" x2="620" y2="233" stroke="#1e2433" stroke-width="0.8"/>
+  <line x1="100" y1="313" x2="620" y2="313" stroke="#1e2433" stroke-width="0.8"/>
+  <line x1="100" y1="386" x2="620" y2="386" stroke="#1e2433" stroke-width="0.8"/>
+
+  <!-- ===== VERTICAL BOUNDARY ===== -->
+  <line x1="100" y1="34"  x2="100" y2="422" stroke="#1e2433" stroke-width="1"/>
+  <line x1="620" y1="34"  x2="620" y2="422" stroke="#1e2433" stroke-width="1"/>
+
+  <!-- ===== ROW 1: WAKE — Alpha (center=73, amp=12, period=28) ===== -->
+  <polyline fill="none" stroke="#00D4FF" stroke-width="1.5" stroke-linejoin="round"
+    points="100,73 107,61 114,73 121,85 128,73 135,61 142,73 149,85 156,73 163,61 170,73 177,85 184,73 191,61 198,73 205,85 212,73 219,61 226,73 233,85 240,73 247,61 254,73 261,85 268,73 275,61 282,73 289,85 296,73 303,61 310,73 317,85 324,73 331,61 338,73 345,85 352,73 359,61 366,73 373,85 380,73 387,61 394,73 401,85 408,73 415,61 422,73 429,85 436,73 443,61 450,73 457,85 464,73 471,61 478,73 485,85 492,73 499,61 506,73 513,85 520,73 527,61 534,73 541,85 548,73 555,61 562,73 569,85 576,73 583,61 590,73 597,85 604,73"/>
+  <!-- Right annotation -->
+  <text x="628" y="67" font-family="'JetBrains Mono', monospace" font-size="9" fill="#00D4FF">regular</text>
+  <text x="628" y="78" font-family="'JetBrains Mono', monospace" font-size="9" fill="#00D4FF">medium amp.</text>
+
+  <!-- ===== ROW 2: N1 — Theta (center=151, amp=9, period=40) ===== -->
+  <polyline fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-linejoin="round"
+    points="100,151 110,142 120,151 130,160 140,151 150,142 160,151 170,160 180,151 190,142 200,151 210,160 220,151 230,142 240,151 250,160 260,151 270,142 280,151 290,160 300,151 310,142 320,151 330,160 340,151 350,142 360,151 370,160 380,151 390,142 400,151 410,160 420,151 430,142 440,151 450,160 460,151 470,142 480,151 490,160 500,151 510,142 520,151 530,160 540,151 550,142 560,151 570,160 580,151 590,142 600,151"/>
+  <!-- Right annotation -->
+  <text x="628" y="145" font-family="'JetBrains Mono', monospace" font-size="9" fill="#94a3b8">slower,</text>
+  <text x="628" y="156" font-family="'JetBrains Mono', monospace" font-size="9" fill="#94a3b8">lower amp.</text>
+
+  <!-- ===== ROW 3: N2 — complex ===== -->
+  <!-- Theta baseline: x=100-214 (center=233, amp=7) -->
+  <!-- Spindle burst: x=214-466 (waxing/waning, period=18) -->
+  <!-- K-complex: x=466-510 -->
+  <!-- Return theta: x=510-620 -->
+  <polyline fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-linejoin="round"
+    points="
+      100,233 109,226 118,233 127,240 136,233 145,226 154,233 163,240 172,233 181,226 190,233 199,240 208,233 214,233
+      223,226 232,233 241,240 250,233
+      259,222 268,233 277,244 286,233
+      295,218 304,233 313,248 322,233
+      331,215 340,233 349,251 358,233
+      367,218 376,233 385,248 394,233
+      403,222 412,233 421,244 430,233
+      439,226 448,233 457,240 466,233
+      475,233
+      480,193
+      485,258
+      495,245
+      510,233
+      519,240 528,233 537,226 546,233 555,240 564,233 573,226 582,233 591,240 600,233 609,226 619,233
+    "/>
+
+  <!-- Sleep spindle bracket -->
+  <line x1="214" y1="264" x2="466" y2="264" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+  <line x1="214" y1="260" x2="214" y2="268" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+  <line x1="466" y1="260" x2="466" y2="268" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+  <text x="340" y="274" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="#00D4FF" opacity="0.8">sleep spindle (12-14 Hz)</text>
+
+  <!-- K-complex label -->
+  <line x1="480" y1="195" x2="500" y2="210" stroke="#f59e0b" stroke-width="1" opacity="0.7"/>
+  <text x="502" y="210" font-family="'JetBrains Mono', monospace" font-size="8" fill="#f59e0b">K-complex</text>
+
+  <!-- Right annotation -->
+  <text x="628" y="224" font-family="'JetBrains Mono', monospace" font-size="9" fill="#94a3b8">most</text>
+  <text x="628" y="235" font-family="'JetBrains Mono', monospace" font-size="9" fill="#94a3b8">abundant</text>
+  <text x="628" y="246" font-family="'JetBrains Mono', monospace" font-size="9" fill="#94a3b8">stage</text>
+
+  <!-- ===== ROW 4: N3 — Delta (center=313, amp=28, period=90) ===== -->
+  <polyline fill="none" stroke="#f59e0b" stroke-width="2" stroke-linejoin="round"
+    points="100,313 123,285 145,313 168,341 190,313 213,285 235,313 258,341 280,313 303,285 325,313 348,341 370,313 393,285 415,313 438,341 460,313 483,285 505,313 528,341 550,313 573,285 595,313 618,341"/>
+  <!-- Right annotation -->
+  <text x="628" y="305" font-family="'JetBrains Mono', monospace" font-size="9" fill="#f59e0b">very slow,</text>
+  <text x="628" y="316" font-family="'JetBrains Mono', monospace" font-size="9" fill="#f59e0b">high amplitude</text>
+
+  <!-- ===== ROW 5: REM — Mixed (center=386, amp~7, period=22, slightly irregular) ===== -->
+  <polyline fill="none" stroke="#818cf8" stroke-width="1.5" stroke-linejoin="round"
+    points="100,386 106,379 112,386 118,393 124,386 130,380 136,386 142,392 148,386 154,379 160,386 166,394 172,386 178,381 184,386 190,392 196,386 202,380 208,386 214,393 220,386 226,380 232,386 238,392 244,386 250,379 256,386 262,394 268,386 274,381 280,386 286,393 292,386 298,380 304,386 310,392 316,386 322,379 328,386 334,394 340,386 346,381 352,386 358,393 364,386 370,380 376,386 382,391 388,386 394,380 400,386 406,393 412,386 418,381 424,386 430,392 436,386 442,379 448,386 454,394 460,386 466,381 472,386 478,392 484,386 490,380 496,386 502,393 508,386 514,380 520,386 526,392 532,386 538,379 544,386 550,394 556,386 562,380 568,386 574,391 580,386 586,379 592,386 598,393 604,386 610,381 618,386"/>
+  <!-- Right annotation -->
+  <text x="628" y="380" font-family="'JetBrains Mono', monospace" font-size="9" fill="#818cf8">like wake,</text>
+  <text x="628" y="391" font-family="'JetBrains Mono', monospace" font-size="9" fill="#818cf8">body paralyzed</text>
+
+  <!-- ===== BOTTOM: 4-second scale bar ===== -->
+  <line x1="100" y1="416" x2="620" y2="416" stroke="#2d3748" stroke-width="0.8"/>
+  <text x="360" y="421" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="#4a5568">&#x2190; schematic 4-second window &#x2192; &#xB7;&#xB7;&#xB7; AASM v3.0 staging criteria</text>
+</svg>
