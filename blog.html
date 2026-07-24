@@ -146,14 +146,7 @@ class Component extends DCLogic {
     posts: (typeof window !== 'undefined' && window.BLOG_POSTS && window.BLOG_POSTS.length) ? window.BLOG_POSTS : undefined
   };
 
-  CATS = [
-    { id:'all',      label:'all' },
-    { id:'data-eng', label:'data eng' },
-    { id:'ai',       label:'ai & tooling' },
-    { id:'biomed',   label:'biomedical ai' },
-    { id:'finance',  label:'finance & crypto' },
-    { id:'sport',    label:'sport' },
-  ];
+  // filter chips are derived from the loaded posts' categories (see renderVals)
 
   componentDidMount(){
     // nav background on scroll
@@ -259,7 +252,13 @@ class Component extends DCLogic {
 
   renderVals(){
     const cur = this.state.filter;
-    const cats = this.CATS.map(c => {
+    const posts = this.state.posts;
+    const seen = {};
+    const catDefs = [{ id:'all', label:'all' }];
+    (posts || []).forEach(p => {
+      if (p.cat && !seen[p.cat]) { seen[p.cat] = 1; catDefs.push({ id:p.cat, label:p.catLabel || p.cat }); }
+    });
+    const cats = catDefs.map(c => {
       const active = c.id === cur;
       return {
         label: c.label,
@@ -270,7 +269,6 @@ class Component extends DCLogic {
         onClick: () => this.applyFilter(c.id),
       };
     });
-    const posts = this.state.posts;
     const featured = (posts && posts.length) ? posts[0] : undefined;
     const gridPosts = (posts && posts.length) ? posts.slice(1) : undefined;
     return { cats, featured, gridPosts };

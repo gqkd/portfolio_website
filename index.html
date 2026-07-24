@@ -1724,7 +1724,7 @@ class Component extends DCLogic {
   renderVals(){
     const posts = (this.state && this.state.blogPosts) || undefined;
     const blogPosts = posts ? posts.map(p => ({
-      href: 'blog.html',
+      href: p.href || 'blog.html',
       status: p.status || 'coming soon',
       catLabel: p.catLabel,
       title: p.title,

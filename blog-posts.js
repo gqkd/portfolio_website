@@ -1,78 +1,92 @@
-/* Single source of truth for blog posts.
-   Order = newest first. The Blog page renders all of these
-   (posts[0] = featured, the rest = grid); the Portfolio homepage
-   shows the latest 3 (posts.slice(0,3)) automatically. */
+/* Single source of truth for the blog.
+   Loads the real Markdown posts in posts/ (the same files post.html renders),
+   parses their frontmatter, and exposes window.BLOG_POSTS for:
+     - the homepage  (index.html) -> latest 3
+     - the blog page (blog.html)  -> featured (newest) + grid + filters
+
+   TO ADD A POST:
+     1) drop a new  posts/<slug>.md  (with title/date/category/excerpt frontmatter)
+     2) add its '<slug>' to POST_FILES below
+   The blog list, the homepage, and the filter chips update automatically. */
 (function () {
-  var POSTS = [
-    {
-      id: 'sap-azure',
-      cat: 'data-eng',
-      catLabel: 'data eng',
-      featured: true,
-      status: 'coming soon',
-      readTime: '12 min read',
-      image: 'uploads/giulio_62477_httpss.mj.runA_hnchSvAg8_uniform_better_the_backgr_193fe038-4461-4b08-a7c1-3d2e07aa21e5.png',
-      href: '#',
-      title: '5 things nobody tells you before migrating a SAP pipeline to Azure',
-      excerpt: "Time windows, NULL semantics in Spark SQL, and why your test always passes but production doesn't. An honest diary from someone who lived it.",
-      excerptLong: "Time windows, NULL semantics in Spark SQL, and why your test always passes but production doesn't. An honest field diary from someone who lived the migration end to end — the wins, the 3am incidents, and the rules I'd tattoo on every new hire."
-    },
-    {
-      id: 'ironman',
-      cat: 'sport',
-      catLabel: 'sport',
-      status: 'coming soon',
-      href: '#',
-      title: 'What an Ironman and a data pipeline have in common',
-      excerpt: 'Pacing, iteration, and the art of not giving up at km 30. Reflections on discipline and engineering.'
-    },
-    {
-      id: 'local-llm',
-      cat: 'ai',
-      catLabel: 'ai & tooling',
-      status: 'coming soon',
-      href: '#',
-      title: 'Running LLMs locally for code review: is it worth it?',
-      excerpt: "A year after building an offline Developer-Reviewer agent with CodeLlama. What worked, what didn't."
-    },
-    {
-      id: 'sleep-uncertainty',
-      cat: 'biomed',
-      catLabel: 'biomedical ai',
-      status: 'coming soon',
-      href: '#',
-      title: 'Quantifying uncertainty in a sleep-staging model',
-      excerpt: 'Why a confident wrong prediction is dangerous in clinical AI, and how I added calibrated uncertainty to DeepSleepNet.'
-    },
-    {
-      id: 'kpi-dashboard',
-      cat: 'finance',
-      catLabel: 'finance & crypto',
-      status: 'coming soon',
-      href: '#',
-      title: 'Building a KPI dashboard finance actually trusts',
-      excerpt: 'Reconciling economic, market, and internal data streams into one Power BI view — and the data-quality checks that earned sign-off.'
-    },
-    {
-      id: 'idempotency',
-      cat: 'data-eng',
-      catLabel: 'data eng',
-      status: 'coming soon',
-      href: '#',
-      title: 'Idempotency is the only word that matters in ETL',
-      excerpt: 'Reruns happen. Designing pipelines that produce the same result whether they run once or five times — patterns and anti-patterns.'
-    },
-    {
-      id: 'pyspark-pandas',
-      cat: 'ai',
-      catLabel: 'ai & tooling',
-      status: 'coming soon',
-      href: '#',
-      title: 'PySpark vs Pandas: when each one actually wins',
-      excerpt: 'Benchmarks from real workloads, the overhead nobody mentions, and a decision tree for picking the right tool.'
-    }
+  // Registration list — order doesn't matter (sorted by date, newest first).
+  var POST_FILES = [
+    '2024-02-03-crash-biomechanics',
+    '2024-01-27-hip-biomechanics',
+    '2024-01-20-neural-network-calibration',
+    '2024-01-13-sleep-stages',
+    '2024-01-06-osseointegration'
   ];
 
-  window.BLOG_POSTS = POSTS;
-  try { window.dispatchEvent(new Event('blogposts:ready')); } catch (e) {}
+  // frontmatter category -> short label shown on cards & filter chips
+  var CAT_LABELS = {
+    'data eng': 'data eng',
+    'machine learning eng': 'ml eng',
+    'software eng': 'software eng',
+    'biomed eng': 'biomed eng',
+    'finance': 'finance',
+    'cryptography': 'crypto',
+    'health': 'health',
+    'sport': 'sport'
+  };
+
+  function slugifyCat(c) { return (c || '').toLowerCase().trim().replace(/\s+/g, '-'); }
+
+  function parseFrontmatter(text) {
+    var m = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+    if (!m) return { meta: {}, body: text };
+    var meta = {};
+    m[1].split('\n').forEach(function (line) {
+      var i = line.indexOf(':');
+      if (i !== -1) meta[line.slice(0, i).trim()] = line.slice(i + 1).trim();
+    });
+    return { meta: meta, body: m[2] };
+  }
+
+  function readTime(body) {
+    var n = body.trim().split(/\s+/).length;
+    return Math.max(1, Math.round(n / 200)) + ' min read';
+  }
+
+  function fmtDate(str) {
+    var d = new Date(str);
+    if (isNaN(d)) return str || '';
+    return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  }
+
+  function toPost(slug, meta, body) {
+    var cat = meta.category || '';
+    return {
+      id: slug,
+      slug: slug,
+      cat: slugifyCat(cat),
+      catLabel: CAT_LABELS[cat.toLowerCase()] || cat,
+      status: fmtDate(meta.date),
+      readTime: readTime(body),
+      image: '',                       // diagrams live inside the post; featured card stays dark
+      href: 'post.html?p=' + slug,
+      title: meta.title || slug,
+      excerpt: meta.excerpt || '',
+      excerptLong: meta.excerpt || ''
+    };
+  }
+
+  function publish(posts) {
+    posts.sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
+    window.BLOG_POSTS = posts.map(function (p) { return p.post; });
+    try { window.dispatchEvent(new Event('blogposts:ready')); } catch (e) {}
+  }
+
+  Promise.all(POST_FILES.map(function (slug) {
+    return fetch('posts/' + slug + '.md')
+      .then(function (r) { return r.ok ? r.text() : null; })
+      .then(function (text) {
+        if (!text) return null;
+        var p = parseFrontmatter(text);
+        return { date: p.meta.date, post: toPost(slug, p.meta, p.body) };
+      })
+      .catch(function () { return null; });
+  })).then(function (entries) {
+    publish(entries.filter(Boolean));
+  });
 })();

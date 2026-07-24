@@ -1,7 +1,13 @@
 # giulio-quaglia.com — Site Repository
 
-Personal portfolio and blog. Built with vanilla HTML/CSS/JS, no frameworks, no build step.
-Hosted on Netlify with automatic deploys from this repository.
+Personal portfolio and blog. Vanilla HTML/CSS/JS, no build step, hosted on Netlify
+with automatic deploys from this repository.
+
+The homepage (`index.html`) and blog index (`blog.html`) render through a tiny
+self-contained runtime (`support.js`) that loads React from **jsDelivr** at page
+load — no bundler, no `npm install`, nothing to compile. jsDelivr is already
+allowed by the Content-Security-Policy in `netlify.toml`, so deploys keep working
+as-is. The post reader (`post.html`) is plain JavaScript.
 
 ---
 
@@ -9,18 +15,33 @@ Hosted on Netlify with automatic deploys from this repository.
 
 ```
 /
-├── index.html                        # Portfolio homepage
-├── blog.html                         # Blog index (reads posts automatically)
-├── post.html                         # Post reader template (shared by all posts)
-├── CV_Giulio_Quaglia_DataEng.pdf     # CV — linked from the contact section
-├── README.md
+├── index.html            # Portfolio homepage (shows the latest 3 posts)
+├── blog.html             # Blog index (featured + grid + category filters)
+├── post.html             # Post reader — renders any posts/<slug>.md
+├── blog-posts.js         # Blog data source: loads posts/*.md, feeds index + blog
+├── support.js            # Runtime for index.html / blog.html (loads React)
+├── favicon.svg
+├── netlify.toml          # Security headers / CSP
+├── CV_Giulio_Quaglia_DataEng.pdf   # linked from the contact section
+├── assets/               # Homepage hero image
+├── uploads/              # Section background images (experience / skills / contact)
+├── netlify/functions/
+│   └── send-cv.js        # Emails the CV PDF (contact form backend)
 └── posts/
-    ├── images/                       # All images, GIFs, and video files
-    │   └── ...
-    ├── sap-azure-migration.md
-    ├── ironman-data-pipeline.md
-    └── ...                           # Your future posts go here
+    ├── images/           # Post images, GIFs, SVGs, video files
+    └── *.md              # One Markdown file per post
 ```
+
+---
+
+## How the blog is wired
+
+`blog-posts.js` is the single source of truth. On load it fetches every post listed
+in its `POST_FILES` array, reads the frontmatter, and publishes the list to **both**
+the homepage and the blog page (sorted newest first). Clicking a post opens
+`post.html?p=<slug>`, which fetches and renders that `.md`. The blog's category
+filter chips are generated automatically from the posts' `category` values — no
+hard-coded filter list to maintain.
 
 ---
 
@@ -28,62 +49,53 @@ Hosted on Netlify with automatic deploys from this repository.
 
 ### Step 1 — Create the Markdown file
 
-Create a new `.md` file inside `posts/`. The filename becomes the URL slug, so use lowercase words separated by hyphens.
-
-Example filename: `posts/my-post-about-python.md`
-
-Every file must start with a **frontmatter block** between two `---` lines:
+Create `posts/<slug>.md`. The filename (without `.md`) is the URL slug — use
+lowercase words separated by hyphens. Every file starts with a frontmatter block
+between two `---` lines:
 
 ```
 ---
 title: Your Post Title Here
 date: 2025-07-20
 category: data eng
-excerpt: One sentence that appears in the blog list as a preview.
+excerpt: One sentence shown as the card preview on the homepage and blog.
 ---
 
 Your post content starts here...
 ```
 
-**Valid categories:**
+**Valid categories** (drive the card label and the filter chip):
 
-| Value to use in frontmatter | Shown as in the UI |
-|---|---|
-| `data eng` | data eng |
-| `machine learning eng` | ml eng |
-| `software eng` | software eng |
-| `biomed eng` | biomed eng |
-| `finance` | finance |
-| `cryptography` | cryptography |
-| `health` | health |
-| `sport` | sport |
+| frontmatter value      | shown as      |
+|------------------------|---------------|
+| data eng               | data eng      |
+| machine learning eng   | ml eng        |
+| software eng           | software eng  |
+| biomed eng             | biomed eng    |
+| finance                | finance       |
+| cryptography           | crypto        |
+| health                 | health        |
+| sport                  | sport         |
 
----
+To add a brand-new category, add one line to the `CAT_LABELS` map in `blog-posts.js`.
 
-### Step 2 — Register the post in blog.html
+### Step 2 — Register the post in `blog-posts.js`
 
-Open `blog.html` and find this block near the top of the `<script>` section (around line 5):
+Add the slug to the `POST_FILES` array near the top of `blog-posts.js`:
 
 ```js
-const POST_FILES = [
-  'sap-azure-migration',
-  'ironman-data-pipeline',
+var POST_FILES = [
+  'my-post-about-python',            // <- add here
+  '2024-02-03-crash-biomechanics',
+  '2024-01-27-hip-biomechanics',
+  // ...
 ];
 ```
 
-Add your new filename (without `.md`) to the array:
+Order doesn't matter — posts are sorted by date automatically. The homepage,
+the blog list, and the filter chips all update from this one change.
 
-```js
-const POST_FILES = [
-  'sap-azure-migration',
-  'ironman-data-pipeline',
-  'my-post-about-python',   // <- add here
-];
-```
-
-Posts are sorted by date automatically, newest first.
-
-### Step 3 — Push to GitHub
+### Step 3 — Push
 
 ```bash
 git add .
@@ -91,7 +103,7 @@ git commit -m "post: my post about python"
 git push
 ```
 
-Netlify detects the push and redeploys in ~30 seconds. Done.
+Netlify detects the push and redeploys in ~30 seconds.
 
 ---
 
@@ -107,42 +119,24 @@ Netlify detects the push and redeploys in ~30 seconds. Done.
 [link text](https://example.com)
 ```
 
-### Headings
+### Headings, lists, quotes
 
 ```markdown
 ## Section heading
 ### Subsection heading
-```
 
-### Lists
-
-```markdown
 - unordered item
-- another item
-
 1. ordered item
-2. another item
+
+> Highlighted quote block.
+
+---   (horizontal rule)
 ```
 
-### Blockquote
+### Code snippets
 
-```markdown
-> This text appears as a highlighted quote block.
-```
-
-### Horizontal rule
-
-```markdown
----
-```
-
----
-
-## Code snippets
-
-Use triple backticks with the language name for syntax highlighting.
-
-Supported languages: `python`, `sql`, `bash`, `javascript`, `java`, `r`, `yaml`
+Triple backticks with a language name get syntax highlighting (Prism).
+Supported: `python`, `sql`, `bash`, `javascript`, `java`, `r`, `yaml`.
 
 ````markdown
 ```python
@@ -151,115 +145,67 @@ df.groupBy("category").agg(count("*")).show()
 ```
 ````
 
-````markdown
-```sql
-SELECT user_id, COUNT(*) AS events
-FROM events
-WHERE date >= '2025-01-01'
-GROUP BY user_id
-```
-````
+### Diagrams (Mermaid)
+
+Fenced `mermaid` blocks render as diagrams (timeline, xychart, flowchart, …):
 
 ````markdown
-```bash
-pip install pandas
-python pipeline.py --env prod
+```mermaid
+timeline
+    title Example
+    Step 1 : does a thing
+    Step 2 : does another
 ```
 ````
 
 ---
 
-## Images and GIFs
+## Images and media
 
-Put the file in `posts/images/` then reference it in your post.
-
-**Plain image or GIF:**
-```markdown
-![alt text](images/filename.png)
-![animation](images/demo.gif)
-```
-
-**Image with caption (shown below the image):**
-```markdown
-![alt text](images/filename.png "This is the caption")
-```
-
-Images are lazy-loaded automatically. Use `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`.
-
----
-
-## Videos
-
-### Local video file (mp4)
-
-Put the file in `posts/images/` and use the `@[video]` syntax:
+Put the file in `posts/images/`, then reference it **with the `posts/` prefix**
+(paths are resolved relative to the site root, where `post.html` lives):
 
 ```markdown
-@[video](images/demo.mp4)
+![alt text](posts/images/filename.svg)
+![alt text](posts/images/filename.png "Optional caption below the image")
+@[video](posts/images/demo.mp4)
+@[youtube](VIDEO_ID)
+@[vimeo](VIDEO_ID)
 ```
 
-Displays a native HTML5 video player with controls.
-
-### YouTube embed
-
-Use only the video ID — the part after `?v=` in the YouTube URL.
-
-For `https://www.youtube.com/watch?v=dQw4w9WgXcQ` the ID is `dQw4w9WgXcQ`:
-
-```markdown
-@[youtube](dQw4w9WgXcQ)
-```
-
-### Vimeo embed
-
-Use only the numeric video ID from the Vimeo URL:
-
-```markdown
-@[vimeo](123456789)
-```
-
-Both embeds are responsive 16:9 and lazy-loaded.
+Images are lazy-loaded. Use `.svg`, `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`.
+Embeds are responsive 16:9.
 
 ---
 
 ## Updating the CV
 
-Replace `CV_Giulio_Quaglia_DataEng.pdf` in the root folder with the new file, keeping the same filename. The download button in the contact section will automatically serve the new file.
-
-If you want to use a different filename, update this line in `index.html`:
-
-```html
-<a href="CV_Giulio_Quaglia_DataEng.pdf" download class="btn">download cv ↓</a>
-```
-
----
-
-## Domain setup (Wix DNS → Netlify)
-
-1. Deploy this repo on [Netlify](https://app.netlify.com) and link it to this GitHub repository.
-2. In Netlify: **Site settings → Domain management → Add custom domain** → enter your domain.
-3. Netlify will show you two DNS values — an `A` record and a `CNAME`.
-4. In Wix: **Domains → Manage → DNS Records** → replace the existing A record and add the CNAME with Netlify's values.
-5. Wait up to 48 hours for propagation (usually under 30 minutes).
-6. Netlify provisions an SSL certificate automatically.
+Replace `CV_Giulio_Quaglia_DataEng.pdf` in the root, keeping the same filename —
+the contact form (which emails the PDF via `netlify/functions/send-cv.js`) and the
+download button pick it up automatically. To use a different filename, update the
+reference in `index.html` and in `netlify/functions/send-cv.js`.
 
 ---
 
 ## Local development
 
-No build tools needed. Just open `index.html` directly in a browser for the portfolio.
-
-For the blog, the post loader uses `fetch()` to read `.md` files, which requires a local server (browsers block local file fetches by default). Run any of these:
+No build tools. The pages use `fetch()` (posts, Markdown), which browsers block on
+`file://`, so run a local server:
 
 ```bash
-# Python (built-in)
-python3 -m http.server 8000
-
-# Node (if installed)
-npx serve .
-
-# VS Code
-# Install the "Live Server" extension, right-click index.html → Open with Live Server
+python3 -m http.server 8000      # then open http://localhost:8000
+# or: npx serve .
 ```
 
-Then open `http://localhost:8000` in your browser.
+Note: `index.html` and `blog.html` pull React from jsDelivr on first load, so the
+first local run needs an internet connection (it's then cached by the browser).
+
+---
+
+## Domain setup (Wix DNS → Netlify)
+
+1. Deploy this repo on [Netlify](https://app.netlify.com) and link it to this repository.
+2. Netlify → **Site settings → Domain management → Add custom domain**.
+3. Copy the `A` record and `CNAME` values Netlify shows.
+4. In Wix → **Domains → Manage → DNS Records** → replace the A record and add the CNAME.
+5. Wait for propagation (usually < 30 min). Netlify provisions SSL automatically.
