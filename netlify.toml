@@ -1,3 +1,9 @@
+# Disable Netlify post-processing (minify/bundle/pretty-urls).
+# The site is rendered by a client-side runtime; minifying the HTML/JS
+# breaks how inline styles are applied, so keep the files served as-is.
+[build.processing]
+  skip_processing = true
+
 [[headers]]
   for = "/*"
   [headers.values]
