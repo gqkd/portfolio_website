@@ -29,12 +29,16 @@ html{scroll-behavior:smooth}
 body{background:#161310;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 a{color:#9DD4FF;text-decoration:none}
 a:hover{color:#BFE6FF}
-#bNav>a{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;letter-spacing:-.02em;color:#ECE6D7}
-#bNavLinks a{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.03em;color:#8A8170}
-#bNavLinks a:nth-child(5){color:#9DD4FF}
+#bNav>a{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:-.02em;color:#ECE6D7;text-decoration:none;display:flex;align-items:center;gap:.55rem}
+#bNav>a span{display:inline-block;width:11px;height:11px;background:#3E5A78;border-radius:2px}
+#bNavLinks a{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.03em;color:#8A8170;text-decoration:none;display:flex;align-items:center;gap:.35rem}
+#bNavLinks a:hover{color:#ECE6D7}
+#bNavLinks a:nth-child(5){color:#9DD4FF;text-shadow:0 0 10px rgba(157,212,255,.4)}
 #bNavLinks a span{color:#3E5A78;font-size:.6rem}
-#blogSite header a{font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:#8A8170}
-#blogSite footer a{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;background:#3E5A78;color:#fff;padding:.9rem 1.6rem;border-radius:6px}
+#blogSite header a{font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:#8A8170;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem}
+#blogSite header a:hover{color:#9DD4FF}
+#blogSite footer a{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;background:#3E5A78;color:#fff;padding:.9rem 1.6rem;border:1px solid #3E5A78;border-radius:6px;text-decoration:none;transition:background .25s,color .25s}
+#blogSite footer a:hover{background:transparent;color:#9DD4FF}
 ::selection{background:#3E5A78;color:#fff}
 ::-webkit-scrollbar{width:11px}
 ::-webkit-scrollbar-track{background:#1E1A15}

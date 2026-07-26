@@ -202,6 +202,28 @@ first local run needs an internet connection (it's then cached by the browser).
 
 ---
 
+## Netlify: keep "Pretty URLs" off
+
+Netlify's HTML post-processing (**Pretty URLs**) rewrites every `<a>` whose `href`
+ends in `.html` — and when it does, it drops the inline `style` / `style-hover`
+attributes on that link. On the live site that left the nav's `05 blog` item and the
+homepage **ALL POSTS** button completely unstyled, while identical links with a query
+string (`post.html?p=…`) or a plain hash (`#about`) rendered fine.
+
+`netlify.toml` now disables it (`[build.processing.html] pretty_urls = false`) and
+adds `301` redirects so `/blog` and `/post` keep working. If it ever gets re-enabled
+in the Netlify UI (Site configuration → Build & deploy → Post processing), the same
+links break again.
+
+Second line of defence: every link that can be stripped this way also has a plain CSS
+rule in the page's `<style>` block (`#navLinks a`, `#blogCta a`, `#bNavLinks a`,
+`#blogSite header a`, `#blogSite footer a`, …). **When you add a new styled link that
+points at a `.html` page, add a matching CSS rule** — target it through its parent
+(e.g. `#blogCta a`), never through an attribute on the link itself, since those are
+what get stripped.
+
+---
+
 ## Domain setup (Wix DNS → Netlify)
 
 1. Deploy this repo on [Netlify](https://app.netlify.com) and link it to this repository.

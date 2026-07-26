@@ -1,3 +1,23 @@
+# Netlify HTML post-processing ("Pretty URLs") rewrites every <a> whose href ends in
+# .html and strips the inline style / style-hover attributes off those links. That is
+# what un-styled the nav "05 blog" item and the "ALL POSTS" button on the live site.
+[build.processing]
+  skip_processing = false
+
+[build.processing.html]
+  pretty_urls = false
+
+# Keep the extension-less URLs pretty_urls used to serve.
+[[redirects]]
+  from = "/blog"
+  to = "/blog.html"
+  status = 301
+
+[[redirects]]
+  from = "/post"
+  to = "/post.html"
+  status = 301
+
 [[headers]]
   for = "/*"
   [headers.values]
